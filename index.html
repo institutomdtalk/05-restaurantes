@@ -1,943 +1,728 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MD Talk — Sala de Espera</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<p>Dining & Drinks — English for Travelers</p>
 <style>
-  :root {
-    --navy:       #0B1D3A;
-    --navy-deep:  #050D1A;
-    --navy-mid:   #0F2645;
-    --navy-light: #163158;
-    --gold:       #C4A45A;
-    --gold-light: #D4BA7A;
-    --gold-pale:  #E8D9B0;
-    --cream:      rgba(255,255,255,.88);
-    --muted:      rgba(255,255,255,.42);
-    --snake-head: #C4A45A;
-    --snake-body: #D4BA7A;
-    --snake-tail: rgba(196,164,90,0.4);
-    --cell:       44px;
-  }
+:root{
+  --bg:#F5F2F0;
+  --bg-warm:#EDE8E4;
+  --bg-card:#FFFFFF;
+  --ink:#141214;
+  --ink-s:#2E2A2C;
+  --ink-m:#8A8486;
+  --black:#1A1618;
+  --black-d:#0E0C0D;
+  --black-l:#2A2628;
+  --nude:#D4B8A8;
+  --nude-l:#E4CFC2;
+  --nude-d:#B89A88;
+  --nude-bg:#F9F4F1;
+  --gold:#B09860;
+  --gold-l:#C8B07A;
+  --gold-d:#8A7648;
+  --gold-bg:#F8F5EE;
+  --rose:#C49A8A;
+  --rose-bg:#FAF2EF;
+  --muted:#7A7274;
+  --muted-bg:#F2EFED;
+  --deep:#5A4A4E;
+  --deep-bg:#F0ECEA;
+  --brd:#DED8D4;
+  --brd-l:#E8E4E0;
+  --fd:'Cormorant',Georgia,serif;
+  --fb:'Manrope',sans-serif;
+  --fm:'JetBrains Mono',monospace;
+  --r:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.78;font-size:16.5px;-webkit-font-smoothing:antialiased}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(155deg,#0E0C0D 0%,#1A1618 30%,#2A2628 55%,#1A1618 80%,#0E0C0D 100%)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 42% at 35% 48%,rgba(176,152,96,.06) 0%,transparent 55%),radial-gradient(ellipse 40% 35% at 65% 45%,rgba(212,184,168,.04) 0%,transparent 50%);z-index:1}
+.hero::after{content:'';position:absolute;inset:0;opacity:.1;background-image:url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='<a href="http://www.w3.org/2000/svg" class="redactor-autoparser-object">http://www.w3.org/2000/svg</a>'%3E%3Ccircle cx='40' cy='40' r='.8' fill='%23C8B07A' fill-opacity='.06'/%3E%3C/svg%3E");z-index:1}
+.hero-c{position:relative;z-index:2;text-align:center;padding:2rem;max-width:780px;animation:hIn 1.3s ease-out}
+@keyframes hIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.hero-badge{display:inline-block;font-family:var(--fb);font-size:.63rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-l);border:1px solid rgba(200,176,122,.18);padding:.42rem 1.3rem;border-radius:100px;margin-bottom:2rem;background:rgba(200,176,122,.04)}
+.hero h1{font-family:var(--fd);font-size:clamp(2.6rem,5.8vw,4.8rem);font-weight:400;color:#F5F2F0;line-height:1.1;letter-spacing:.01em}
+.hero h1 em{font-style:italic;color:var(--gold-l);font-weight:300}
+.hero-line{width:45px;height:1px;background:var(--gold);margin:1.8rem auto;opacity:.2}
+.hero-sub{font-family:var(--fd);font-size:1.15rem;color:rgba(245,242,240,.3);font-style:italic;line-height:1.7;max-width:480px;margin:0 auto;letter-spacing:.01em}
+.hero-scroll{margin-top:3rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;color:rgba(245,242,240,.12);font-family:var(--fb);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;animation:pls 2.5s ease-in-out infinite}
+.hero-scroll svg{width:15px;height:15px;stroke:rgba(245,242,240,.12)}
+@keyframes pls{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:.8;transform:translateY(5px)}}
 
-  html, body {
-    width: 100%; height: 100%;
-    background: var(--navy-deep);
-    font-family: 'Raleway', sans-serif;
-    overflow: hidden;
-    color: var(--cream);
-  }
+.nav{position:sticky;top:0;z-index:100;background:rgba(245,242,240,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--brd-l)}
+.nav-in{max-width:1200px;margin:0 auto;padding:0 2rem;overflow-x:auto;scrollbar-width:none}.nav-in::-webkit-scrollbar{display:none}
+.nav-ul{display:flex;list-style:none;white-space:nowrap}
+.nav-ul a{display:block;padding:.85rem .9rem;font-family:var(--fb);font-size:.6rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-m);text-decoration:none;border-bottom:2px solid transparent;transition:all .3s ease}
+.nav-ul a:hover{color:var(--gold-d);border-bottom-color:var(--gold)}
 
-  /* ─── DOT GRID BACKGROUND ─── */
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: radial-gradient(circle, rgba(196,164,90,.18) 1px, transparent 1px);
-    background-size: 28px 28px;
-    pointer-events: none;
-    z-index: 0;
-  }
+.main{max-width:870px;margin:0 auto;padding:0 2rem 6rem}
+.sc{padding-top:4.5rem}
+.sc-tag{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fb);font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:.7rem;color:var(--gold)}
+.sc-tag .n{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:.54rem;font-weight:700;letter-spacing:0;color:var(--bg);background:var(--black)}
+.sc h2{font-family:var(--fd);font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:500;color:var(--ink);line-height:1.22;margin-bottom:.3rem;letter-spacing:.01em}
+.sc-sub{font-family:var(--fd);font-size:1.02rem;color:var(--ink-m);font-style:italic;margin-bottom:2rem;line-height:1.6;letter-spacing:.01em}
+.sc-intro{font-size:.95rem;color:var(--ink-s);line-height:1.85;margin-bottom:2rem;max-width:730px}
 
-  /* ─── AMBIENT GLOW ─── */
-  body::after {
-    content: '';
-    position: fixed;
-    top: -20%; left: 50%; transform: translateX(-50%);
-    width: 800px; height: 600px;
-    background: radial-gradient(ellipse, rgba(196,164,90,.06) 0%, transparent 65%);
-    pointer-events: none;
-    z-index: 0;
-  }
+.gr{margin-bottom:2.3rem}
+.gr-t{font-family:var(--fb);font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-s);margin-bottom:.8rem;padding-bottom:.4rem;border-bottom:1px solid var(--brd)}
+.cd{background:var(--bg-card);border:1px solid var(--brd-l);border-radius:var(--r);padding:1.1rem 1.35rem;margin-bottom:.46rem;transition:all .25s ease}
+.cd:hover{border-color:var(--brd);box-shadow:0 4px 16px rgba(20,18,20,.05);transform:translateY(-1px)}
+.cd .en{font-family:var(--fd);font-size:1.12rem;font-weight:500;color:var(--ink);line-height:1.48;margin-bottom:.1rem;letter-spacing:.005em}
+.cd .pt{font-family:var(--fb);font-size:.82rem;color:var(--ink-m);line-height:1.5}
 
-  /* ─── FLOATING GEO ELEMENTS ─── */
-  .geo {
-    position: fixed;
-    pointer-events: none;
-    z-index: 0;
-    animation: geoFloat 8s ease-in-out infinite;
-  }
-  .geo-ring {
-    width: 120px; height: 120px;
-    border: 1px solid rgba(196,164,90,.12);
-    border-radius: 50%;
-    top: 8%; right: 6%;
-    animation-duration: 11s;
-  }
-  .geo-ring-2 {
-    width: 60px; height: 60px;
-    border: 1px solid rgba(196,164,90,.18);
-    border-radius: 50%;
-    bottom: 14%; left: 4%;
-    animation-duration: 9s;
-    animation-delay: -3s;
-  }
-  .geo-diamond {
-    width: 18px; height: 18px;
-    border: 1px solid rgba(196,164,90,.3);
-    transform: rotate(45deg);
-    top: 50%; right: 4%;
-    animation-duration: 13s;
-    animation-delay: -5s;
-  }
-  .geo-line {
-    width: 1px; height: 80px;
-    background: linear-gradient(to bottom, transparent, rgba(196,164,90,.25), transparent);
-    top: 20%; left: 8%;
-    animation-duration: 7s;
-    animation-delay: -2s;
-  }
-  @keyframes geoFloat {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-14px); }
-  }
-  .geo-diamond { animation: geoPulse 13s ease-in-out infinite; }
-  @keyframes geoPulse {
-    0%, 100% { transform: rotate(45deg) scale(1);   opacity: .3; }
-    50%       { transform: rotate(45deg) scale(1.3); opacity: .7; }
-  }
+.nt{margin-top:.45rem;font-family:var(--fb);font-size:.71rem;padding:.42rem .72rem;border-radius:6px;line-height:1.55;border-left:3px solid}
+.nt.gold{color:var(--gold-d);background:var(--gold-bg);border-color:var(--gold)}
+.nt.nude{color:var(--nude-d);background:var(--nude-bg);border-color:var(--nude)}
+.nt.rose{color:#8A5A4A;background:var(--rose-bg);border-color:var(--rose)}
+.nt.muted{color:var(--muted);background:var(--muted-bg);border-color:var(--muted)}
+.nt.deep{color:var(--deep);background:var(--deep-bg);border-color:var(--deep)}
 
-  /* ─── LAYOUT ─── */
-  .wrapper {
-    position: relative; z-index: 1;
-    width: 100vw; height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    padding: 0 0 0 0;
-  }
+.vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:.4rem;margin:1.4rem 0 2rem}
+.vi{background:var(--bg-card);border:1px solid var(--brd-l);border-radius:8px;padding:.7rem .92rem;transition:all .2s ease}
+.vi:hover{border-color:var(--brd);box-shadow:0 2px 10px rgba(20,18,20,.04)}
+.vi .en{font-family:var(--fd);font-size:.92rem;font-weight:500;color:var(--ink);letter-spacing:.005em}
+.vi .pt{font-family:var(--fb);font-size:.73rem;color:var(--ink-m)}
 
-  /* ─── HEADER ─── */
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 24px 48px 20px;
-    border-bottom: 1px solid rgba(196,164,90,.12);
-  }
-  .brand {
-    display: flex; flex-direction: column; gap: 2px;
-  }
-  .brand-overline {
-    font-family: 'Raleway', sans-serif;
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: .25em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-  .brand-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 400;
-    letter-spacing: .08em;
-    color: var(--cream);
-    line-height: 1;
-  }
-  .brand-name em {
-    font-style: italic;
-    color: var(--gold);
-  }
+.dlg{background:var(--bg-card);border:1px solid var(--brd);border-radius:12px;padding:1.6rem 1.8rem;margin:1.8rem 0 2.3rem;position:relative;overflow:hidden}
+.dlg::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--black),var(--gold),var(--black))}
+.dlg-h{font-family:var(--fb);font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.18rem}
+.dlg-ctx{font-family:var(--fb);font-size:.76rem;color:var(--ink-m);font-style:italic;margin-bottom:1.2rem}
+.ln{display:flex;gap:.8rem;margin-bottom:.76rem;align-items:flex-start}
+.av{flex-shrink:0;width:31px;height:31px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fb);font-size:.48rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;margin-top:2px}
+.av.you{background:var(--gold-bg);color:var(--gold-d);border:1.5px solid rgba(176,152,96,.15)}
+.av.them{background:var(--nude-bg);color:var(--nude-d);border:1.5px solid rgba(212,184,168,.18)}
+.bb{flex:1}.bb .en{font-family:var(--fd);font-size:.98rem;color:var(--ink);line-height:1.48;font-weight:500;letter-spacing:.005em}
+.bb .pt{font-family:var(--fb);font-size:.75rem;color:var(--ink-m);line-height:1.5;margin-top:.05rem}
 
-  .header-right {
-    text-align: right;
-    display: flex; flex-direction: column; gap: 4px;
-  }
-  .header-tag {
-    font-size: 9px;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 500;
-  }
-  .header-score-label {
-    font-size: 11px;
-    letter-spacing: .12em;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-  .header-score-val {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 32px;
-    font-weight: 300;
-    color: var(--gold-light);
-    line-height: 1;
-    transition: all .2s;
-  }
+.bk{border-radius:12px;padding:1.5rem 1.6rem;margin:1.8rem 0;border:1px solid}
+.bk h4{font-family:var(--fb);font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.5rem}
+.bk p{font-size:.9rem;color:var(--ink-s);line-height:1.75}
+.bk.tip{background:linear-gradient(135deg,var(--gold-bg),var(--bg));border-color:rgba(176,152,96,.14)}.bk.tip h4{color:var(--gold-d)}
+.bk.cultural{background:linear-gradient(135deg,var(--nude-bg),var(--bg));border-color:rgba(212,184,168,.15)}.bk.cultural h4{color:var(--nude-d)}
+.bk.alert{background:linear-gradient(135deg,var(--rose-bg),var(--bg));border-color:rgba(196,154,138,.14)}.bk.alert h4{color:#8A5A4A}
+.bk.note{background:linear-gradient(135deg,var(--muted-bg),var(--bg));border-color:rgba(122,114,116,.12)}.bk.note h4{color:var(--muted)}
 
-  /* ─── MAIN ARENA ─── */
-  .arena {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    flex: 1;
-    overflow: hidden;
-  }
+.banner{background:linear-gradient(135deg,var(--black-d) 0%,var(--black) 50%,var(--black-d) 100%);padding:2.6rem 2rem;text-align:center;margin-top:3.5rem}
+.banner h3{font-family:var(--fd);font-size:1.6rem;font-weight:400;color:rgba(245,242,240,.7);letter-spacing:.01em;margin-bottom:.3rem}
+.banner h3 em{font-style:italic;color:var(--gold-l)}
+.banner p{font-family:var(--fb);font-size:.8rem;color:rgba(245,242,240,.25);max-width:440px;margin:0 auto;line-height:1.55}
 
-  #canvas-wrap {
-    position: relative;
-  }
+.sep{display:flex;align-items:center;justify-content:center;gap:1rem;padding:2.8rem 0 0}
+.sep::before,.sep::after{content:'';flex:1;max-width:100px;height:1px;background:var(--brd)}
+.sep .d{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.18}
+.footer{text-align:center;padding:3rem 2rem;border-top:1px solid var(--brd-l);margin-top:3rem}
+.footer-b{font-family:var(--fd);font-size:1.2rem;color:var(--ink);letter-spacing:.01em;margin-bottom:.3rem}
+.footer-t{font-family:var(--fb);font-size:.73rem;color:var(--ink-m)}
 
-  canvas {
-    display: block;
-    border: 1px solid rgba(196,164,90,.2);
-    box-shadow:
-      0 0 60px rgba(196,164,90,.06),
-      inset 0 0 80px rgba(5,13,26,.6);
-    background: rgba(5,13,26,.55);
-    backdrop-filter: blur(2px);
-  }
-
-  /* ─── WORD FLOATING LABELS (rendered on canvas overlay) ─── */
-  .word-label {
-    position: absolute;
-    font-family: 'Raleway', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: .15em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    pointer-events: none;
-    transition: opacity .4s, transform .3s;
-    white-space: nowrap;
-    text-shadow: 0 0 12px rgba(196,164,90,.4);
-  }
-  .word-label.eaten {
-    animation: wordEaten .6s forwards;
-  }
-  @keyframes wordEaten {
-    0%   { opacity: 1; transform: scale(1.4);    color: #fff; }
-    100% { opacity: 0; transform: scale(2) translateY(-20px); }
-  }
-
-  /* ─── OVERLAY SCREENS ─── */
-  .overlay {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    gap: 20px;
-    background: rgba(5,13,26,.85);
-    backdrop-filter: blur(6px);
-    z-index: 10;
-    transition: opacity .5s;
-  }
-  .overlay.hidden { opacity: 0; pointer-events: none; }
-
-  .overlay-overline {
-    font-size: 9px;
-    letter-spacing: .3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 500;
-  }
-  .overlay-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(36px, 5vw, 60px);
-    font-weight: 300;
-    color: var(--cream);
-    text-align: center;
-    line-height: 1.1;
-  }
-  .overlay-title em {
-    font-style: italic;
-    color: var(--gold);
-  }
-  .overlay-divider {
-    width: 60px; height: 1px;
-    background: var(--gold);
-    opacity: .5;
-  }
-  .overlay-sub {
-    font-size: 12px;
-    letter-spacing: .1em;
-    color: var(--muted);
-    text-align: center;
-    line-height: 1.8;
-  }
-  .overlay-score-display {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 64px;
-    font-weight: 300;
-    color: var(--gold-light);
-    line-height: 1;
-  }
-  .overlay-score-label {
-    font-size: 10px;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: -12px;
-  }
-
-  .btn-start {
-    margin-top: 8px;
-    padding: 14px 48px;
-    background: transparent;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    font-family: 'Raleway', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: .25em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all .25s;
-    position: relative;
-    overflow: hidden;
-  }
-  .btn-start::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: var(--gold);
-    transform: translateX(-101%);
-    transition: transform .25s;
-    z-index: -1;
-  }
-  .btn-start:hover { color: var(--navy-deep); }
-  .btn-start:hover::before { transform: translateX(0); }
-
-  /* ─── GLOSSARY TICKER ─── */
-  .word-earned {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-style: italic;
-    color: var(--gold-light);
-    text-align: center;
-    pointer-events: none;
-    z-index: 20;
-    opacity: 0;
-    text-shadow: 0 0 30px rgba(196,164,90,.6);
-  }
-  .word-earned.show {
-    animation: wordPop .9s forwards;
-  }
-  @keyframes wordPop {
-    0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-    20%  { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
-    70%  { opacity: 1; transform: translate(-50%, -50%) scale(1);   }
-    100% { opacity: 0; transform: translate(-50%, -60%) scale(0.95); }
-  }
-
-  /* ─── GLOSSARY SIDEBAR ─── */
-  .glossary {
-    position: fixed;
-    right: 32px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    max-height: 60vh;
-    overflow: hidden;
-    z-index: 5;
-    width: 220px;
-  }
-  .glossary-title {
-    font-size: 8px;
-    letter-spacing: .25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 500;
-    margin-bottom: 4px;
-    opacity: .7;
-  }
-  .glossary-entry {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    opacity: 0;
-    transform: translateX(20px);
-    animation: slideIn .4s forwards;
-    border-left: 1px solid rgba(196,164,90,.25);
-    padding-left: 10px;
-  }
-  @keyframes slideIn {
-    to { opacity: 1; transform: translateX(0); }
-  }
-  .glossary-word {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14px;
-    color: var(--gold-light);
-    font-style: italic;
-  }
-  .glossary-pt {
-    font-size: 10px;
-    color: var(--muted);
-    letter-spacing: .05em;
-  }
-
-  /* ─── FOOTER ─── */
-  footer {
-    border-top: 1px solid rgba(196,164,90,.1);
-    padding: 14px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: linear-gradient(to right, rgba(196,164,90,.04), transparent);
-  }
-  .footer-controls {
-    display: flex; gap: 24px;
-  }
-  .key-hint {
-    display: flex; align-items: center; gap: 6px;
-    font-size: 10px;
-    letter-spacing: .12em;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-  .key {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 22px; height: 22px;
-    border: 1px solid rgba(196,164,90,.3);
-    color: var(--gold);
-    font-size: 9px;
-    font-weight: 600;
-    border-radius: 3px;
-  }
-  .footer-level {
-    font-size: 10px;
-    letter-spacing: .15em;
-    color: var(--muted);
-    text-transform: uppercase;
-  }
-  .footer-level span {
-    color: var(--gold);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    font-weight: 300;
-  }
-
-  /* score pulse */
-  @keyframes scorePulse {
-    0%,100% { transform: scale(1); }
-    50%      { transform: scale(1.15); color: #fff; }
-  }
-  .pulse { animation: scorePulse .3s ease; }
+@media(max-width:768px){.main{padding:0 1.2rem 4rem}.dlg{padding:1.3rem}.sc{padding-top:3.5rem}.vg{grid-template-columns:1fr}.nav-ul a{padding:.78rem .68rem;font-size:.56rem}}
+.fi{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}.fi.v{opacity:1;transform:translateY(0)}
 </style>
-</head>
-<body>
-
-<!-- Floating geometric decorations -->
-<div class="geo geo-ring"></div>
-<div class="geo geo-ring-2"></div>
-<div class="geo geo-diamond"></div>
-<div class="geo geo-line"></div>
-
-<!-- Word earned toast -->
-<div class="word-earned" id="wordToast"></div>
-
-<!-- Glossary sidebar -->
-<div class="glossary" id="glossary">
-  <div class="glossary-title">Vocabulário adquirido</div>
-</div>
-
-<div class="wrapper">
-  <!-- HEADER -->
-  <header>
-    <div class="brand">
-      <div class="brand-overline">Instituto MD Talk</div>
-      <div class="brand-name">MD <em>Talk</em></div>
-    </div>
-    <div class="header-right">
-      <div class="header-tag">Sala de Espera</div>
-      <div class="header-score-label">Score</div>
-      <div class="header-score-val" id="scoreDisplay">0</div>
-    </div>
-  </header>
-
-  <!-- ARENA -->
-  <div class="arena" id="arena">
-    <div id="canvas-wrap">
-      <canvas id="game"></canvas>
-    </div>
-
-    <!-- START OVERLAY -->
-    <div class="overlay" id="overlayStart">
-      <div class="overlay-overline">Sala de Espera · MD Talk</div>
-      <div class="overlay-title">Enquanto você <em>aguarda</em>,<br>pratique Medical English</div>
-      <div class="overlay-divider"></div>
-      <div class="overlay-sub">
-        Guie a cobra pelo grid e colete<br>
-        termos clínicos em inglês<br>
-        <br>
-        <span style="color:var(--gold-pale); font-size:10px; letter-spacing:.15em">USE AS SETAS OU WASD PARA MOVER</span>
-      </div>
-      <button class="btn-start" id="btnStart">Iniciar</button>
-    </div>
-
-    <!-- GAME OVER OVERLAY -->
-    <div class="overlay hidden" id="overlayOver">
-      <div class="overlay-overline">Session Ended</div>
-      <div class="overlay-title"><em>Game</em> Over</div>
-      <div class="overlay-divider"></div>
-      <div class="overlay-score-display" id="finalScore">0</div>
-      <div class="overlay-score-label">termos coletados</div>
-      <div class="overlay-sub" id="lastWord"></div>
-      <button class="btn-start" id="btnRestart">Nova Sessão</button>
-    </div>
+<section class="hero">
+  <div class="hero-c">
+    <div class="hero-badge">English for Travelers — Módulo Completo</div>
+    <h1>Dining &<br><em>Drinks</em></h1>
+    <div class="hero-line"></div>
+    <p class="hero-sub">Restaurantes, bares, cafés, vinhos e tudo o que envolve comer e beber no exterior.</p>
+    <div class="hero-scroll">Explore o módulo<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"></path></svg></div>
   </div>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-controls">
-      <div class="key-hint"><div class="key">↑</div><div class="key">↓</div><div class="key">←</div><div class="key">→</div> mover</div>
-      <div class="key-hint"><div class="key" style="width:32px">P</div> pausar</div>
-    </div>
-    <div class="footer-level">Nível <span id="levelDisplay">I</span></div>
-  </footer>
-</div>
-
-<script>
-// ─── MEDICAL VOCABULARY ───────────────────────────────────────────────────────
-const VOCAB = [
-  { en: 'dyspnea',        pt: 'dispneia' },
-  { en: 'tachycardia',    pt: 'taquicardia' },
-  { en: 'bradycardia',    pt: 'bradicardia' },
-  { en: 'hypertension',   pt: 'hipertensão' },
-  { en: 'hypoxia',        pt: 'hipóxia' },
-  { en: 'edema',          pt: 'edema' },
-  { en: 'syncope',        pt: 'síncope' },
-  { en: 'auscultation',   pt: 'ausculta' },
-  { en: 'pallor',         pt: 'palidez' },
-  { en: 'cyanosis',       pt: 'cianose' },
-  { en: 'hemoptysis',     pt: 'hemoptise' },
-  { en: 'dysphagia',      pt: 'disfagia' },
-  { en: 'paraesthesia',   pt: 'parestesia' },
-  { en: 'vertigo',        pt: 'vertigem' },
-  { en: 'prognosis',      pt: 'prognóstico' },
-  { en: 'anamnesis',      pt: 'anamnese' },
-  { en: 'triage',         pt: 'triagem' },
-  { en: 'palpation',      pt: 'palpação' },
-  { en: 'percussion',     pt: 'percussão' },
-  { en: 'jaundice',       pt: 'icterícia' },
-  { en: 'diuresis',       pt: 'diurese' },
-  { en: 'embolism',       pt: 'embolia' },
-  { en: 'ischemia',       pt: 'isquemia' },
-  { en: 'infarction',     pt: 'infarto' },
-  { en: 'necrosis',       pt: 'necrose' },
-  { en: 'fibrosis',       pt: 'fibrose' },
-  { en: 'stenosis',       pt: 'estenose' },
-  { en: 'thrombosis',     pt: 'trombose' },
-  { en: 'septicemia',     pt: 'septicemia' },
-  { en: 'hemostasis',     pt: 'hemostasia' },
-  { en: 'diaphoresis',    pt: 'diaforese' },
-  { en: 'epistaxis',      pt: 'epistaxe' },
-  { en: 'oliguria',       pt: 'oligúria' },
-  { en: 'anuria',         pt: 'anúria' },
-  { en: 'hematuria',      pt: 'hematúria' },
-  { en: 'cachexia',       pt: 'caquexia' },
-  { en: 'ascites',        pt: 'ascite' },
-  { en: 'atelectasis',    pt: 'atelectasia' },
-  { en: 'pneumothorax',   pt: 'pneumotórax' },
-  { en: 'emphysema',      pt: 'enfisema' },
-];
-
-const ROMAN = ['I','II','III','IV','V','VI','VII'];
-
-// ─── CANVAS SETUP ────────────────────────────────────────────────────────────
-const canvas = document.getElementById('game');
-const ctx    = canvas.getContext('2d');
-const arena  = document.getElementById('arena');
-
-let COLS, ROWS, CELL, W, H;
-
-function resize() {
-  const pad  = 32;
-  const aw   = arena.clientWidth  - pad * 2;
-  const ah   = arena.clientHeight - pad * 2;
-  CELL = window.innerWidth < 700 ? 36 : 44;
-  COLS = Math.floor(aw / CELL);
-  ROWS = Math.floor(ah / CELL);
-  // keep odd for centering
-  if (COLS % 2 === 0) COLS--;
-  if (ROWS % 2 === 0) ROWS--;
-  COLS = Math.max(11, COLS);
-  ROWS = Math.max(9,  ROWS);
-  W = COLS * CELL;
-  H = ROWS * CELL;
-  canvas.width  = W;
-  canvas.height = H;
-}
-resize();
-
-// ─── GAME STATE ──────────────────────────────────────────────────────────────
-let snake, dir, nextDir, food, score, level, speed, paused, running, intervalId;
-let collected = [];
-let foodItem  = null;
-
-function initGame() {
-  resize();
-  const cx = Math.floor(COLS / 2);
-  const cy = Math.floor(ROWS / 2);
-  snake   = [{ x: cx, y: cy }, { x: cx - 1, y: cy }, { x: cx - 2, y: cy }];
-  dir     = { x: 1, y: 0 };
-  nextDir = { x: 1, y: 0 };
-  score   = 0;
-  level   = 1;
-  speed   = 200;
-  paused  = false;
-  running = true;
-  collected = [];
-  foodItem  = null;
-  updateScoreDisplay();
-  updateLevelDisplay();
-  placeFood();
-  clearInterval(intervalId);
-  intervalId = setInterval(tick, speed);
-}
-
-// ─── FOOD WORDS ──────────────────────────────────────────────────────────────
-function placeFood() {
-  const remaining = VOCAB.filter(v => !collected.find(c => c.en === v.en));
-  const pool = remaining.length > 0 ? remaining : VOCAB;
-  const item = pool[Math.floor(Math.random() * pool.length)];
-  let x, y, safe;
-  let tries = 0;
-  do {
-    x = 1 + Math.floor(Math.random() * (COLS - 2));
-    y = 1 + Math.floor(Math.random() * (ROWS - 2));
-    safe = !snake.some(s => s.x === x && s.y === y);
-    tries++;
-  } while (!safe && tries < 200);
-  foodItem = { x, y, ...item };
-}
-
-// ─── TICK ────────────────────────────────────────────────────────────────────
-function tick() {
-  if (!running || paused) return;
-  dir = { ...nextDir };
-
-  const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
-
-  // wall collision
-  if (head.x < 0 || head.x >= COLS || head.y < 0 || head.y >= ROWS) {
-    gameOver(); return;
-  }
-  // self collision
-  if (snake.some(s => s.x === head.x && s.y === head.y)) {
-    gameOver(); return;
-  }
-
-  snake.unshift(head);
-
-  if (foodItem && head.x === foodItem.x && head.y === foodItem.y) {
-    eatFood();
-  } else {
-    snake.pop();
-  }
-
-  draw();
-}
-
-function eatFood() {
-  score++;
-  collected.unshift({ en: foodItem.en, pt: foodItem.pt });
-  if (collected.length > 8) collected = collected.slice(0, 8);
-  showWordToast(foodItem);
-  updateGlossary();
-  updateScoreDisplay();
-
-  // level up every 5 words
-  const newLevel = Math.floor(score / 5) + 1;
-  if (newLevel !== level) {
-    level = Math.min(newLevel, 7);
-    speed = Math.max(80, 200 - (level - 1) * 18);
-    clearInterval(intervalId);
-    intervalId = setInterval(tick, speed);
-    updateLevelDisplay();
-  }
-  placeFood();
-}
-
-function gameOver() {
-  running = false;
-  clearInterval(intervalId);
-  draw(); // draw final state
-  setTimeout(() => showOverlay('over'), 600);
-}
-
-// ─── DRAWING ─────────────────────────────────────────────────────────────────
-function draw() {
-  ctx.clearRect(0, 0, W, H);
-
-  // subtle grid lines
-  ctx.strokeStyle = 'rgba(196,164,90,.04)';
-  ctx.lineWidth = 1;
-  for (let c = 0; c <= COLS; c++) {
-    ctx.beginPath(); ctx.moveTo(c * CELL, 0); ctx.lineTo(c * CELL, H); ctx.stroke();
-  }
-  for (let r = 0; r <= ROWS; r++) {
-    ctx.beginPath(); ctx.moveTo(0, r * CELL); ctx.lineTo(W, r * CELL); ctx.stroke();
-  }
-
-  // food word
-  if (foodItem) drawFoodWord(foodItem);
-
-  // snake
-  drawSnake();
-}
-
-function drawSnake() {
-  const len = snake.length;
-  snake.forEach((seg, i) => {
-    const t = i / len; // 0 = head, 1 = tail
-    const x = seg.x * CELL;
-    const y = seg.y * CELL;
-    const pad = 3 + t * 4;
-    const r   = (CELL / 2 - pad);
-    const alpha = 1 - t * 0.6;
-
-    if (i === 0) {
-      // head — gold with glow
-      ctx.save();
-      ctx.shadowColor  = 'rgba(196,164,90,.7)';
-      ctx.shadowBlur   = 18;
-      ctx.fillStyle    = '#C4A45A';
-      roundRect(ctx, x + 3, y + 3, CELL - 6, CELL - 6, 6);
-      ctx.fill();
-      ctx.restore();
-
-      // eyes
-      const eyeSize = 3;
-      ctx.fillStyle = '#050D1A';
-      const ex1 = x + CELL/2 - 4, ey1 = y + CELL/2 - 4;
-      const ex2 = x + CELL/2 + 2, ey2 = y + CELL/2 - 4;
-
-      if (dir.x === 1)  { drawEyes(x + CELL - 10, y + CELL/2 - 4, x + CELL - 10, y + CELL/2 + 2); }
-      else if (dir.x === -1) { drawEyes(x + 6, y + CELL/2 - 4, x + 6, y + CELL/2 + 2); }
-      else if (dir.y === -1) { drawEyes(x + CELL/2 - 4, y + 6, x + CELL/2 + 2, y + 6); }
-      else              { drawEyes(x + CELL/2 - 4, y + CELL - 10, x + CELL/2 + 2, y + CELL - 10); }
-
-    } else {
-      // body — gradient from gold to transparent
-      const gAlpha = Math.max(0.08, alpha);
-      ctx.fillStyle = `rgba(196,164,90,${gAlpha})`;
-      roundRect(ctx, x + 4 + t * 2, y + 4 + t * 2, CELL - 8 - t * 4, CELL - 8 - t * 4, 5);
-      ctx.fill();
-
-      // inner shine
-      if (alpha > 0.3) {
-        ctx.fillStyle = `rgba(212,186,122,${gAlpha * 0.4})`;
-        roundRect(ctx, x + 7, y + 7, CELL - 14, 4, 2);
-        ctx.fill();
-      }
-    }
-  });
-}
-
-function drawEyes(x1, y1, x2, y2) {
-  ctx.fillStyle = '#050D1A';
-  ctx.beginPath(); ctx.arc(x1 + 2, y1 + 2, 2.5, 0, Math.PI * 2); ctx.fill();
-  ctx.beginPath(); ctx.arc(x2 + 2, y2 + 2, 2.5, 0, Math.PI * 2); ctx.fill();
-  ctx.fillStyle = 'rgba(255,255,255,0.7)';
-  ctx.beginPath(); ctx.arc(x1 + 3, y1 + 1, 1, 0, Math.PI * 2); ctx.fill();
-  ctx.beginPath(); ctx.arc(x2 + 3, y2 + 1, 1, 0, Math.PI * 2); ctx.fill();
-}
-
-function drawFoodWord(item) {
-  const x = item.x * CELL;
-  const y = item.y * CELL;
-
-  // pulsing glow halo
-  const time = Date.now() / 1000;
-  const pulse = 0.5 + 0.5 * Math.sin(time * 3);
-
-  ctx.save();
-  ctx.shadowColor  = `rgba(196,164,90,${0.4 + pulse * 0.4})`;
-  ctx.shadowBlur   = 16 + pulse * 10;
-
-  // cell highlight
-  const grad = ctx.createRadialGradient(x + CELL/2, y + CELL/2, 2, x + CELL/2, y + CELL/2, CELL);
-  grad.addColorStop(0, `rgba(196,164,90,${0.22 + pulse * 0.1})`);
-  grad.addColorStop(1, 'rgba(196,164,90,0)');
-  ctx.fillStyle = grad;
-  roundRect(ctx, x + 1, y + 1, CELL - 2, CELL - 2, 8);
-  ctx.fill();
-
-  // border
-  ctx.strokeStyle = `rgba(196,164,90,${0.5 + pulse * 0.3})`;
-  ctx.lineWidth   = 1.5;
-  roundRect(ctx, x + 2, y + 2, CELL - 4, CELL - 4, 7);
-  ctx.stroke();
-  ctx.restore();
-
-  // word — adaptive font size
-  const word = item.en;
-  const maxW  = CELL * 3.2;
-  let fontSize = 11;
-  ctx.font = `500 ${fontSize}px 'Raleway', sans-serif`;
-  while (ctx.measureText(word).width > maxW - 8 && fontSize > 7) {
-    fontSize--;
-    ctx.font = `500 ${fontSize}px 'Raleway', sans-serif`;
-  }
-
-  ctx.save();
-  ctx.shadowColor = 'rgba(196,164,90,.8)';
-  ctx.shadowBlur  = 8;
-  ctx.fillStyle   = `rgba(232,217,176,${0.85 + pulse * 0.15})`;
-  ctx.textAlign   = 'center';
-  ctx.textBaseline = 'middle';
-
-  // draw word ABOVE the cell if it would overflow right
-  const textX = x + CELL / 2;
-  let textY   = y - 10; // above cell
-  if (textY < 14) textY = y + CELL + 14; // below instead
-
-  ctx.font = `500 ${fontSize}px 'Raleway', sans-serif`;
-  ctx.letterSpacing = '0.1em';
-  ctx.fillText(word.toUpperCase(), textX, textY);
-
-  // small gold dot on the cell center
-  ctx.fillStyle = `rgba(196,164,90,${0.7 + pulse * 0.3})`;
-  ctx.beginPath(); ctx.arc(x + CELL/2, y + CELL/2, 4, 0, Math.PI * 2); ctx.fill();
-
-  ctx.restore();
-}
-
-function roundRect(ctx, x, y, w, h, r) {
-  ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.lineTo(x + w - r, y);
-  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-  ctx.lineTo(x + w, y + h - r);
-  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-  ctx.lineTo(x + r, y + h);
-  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-  ctx.lineTo(x, y + r);
-  ctx.quadraticCurveTo(x, y, x + r, y);
-  ctx.closePath();
-}
-
-// ─── UI UPDATES ──────────────────────────────────────────────────────────────
-function updateScoreDisplay() {
-  const el = document.getElementById('scoreDisplay');
-  el.textContent = score;
-  el.classList.remove('pulse');
-  void el.offsetWidth;
-  el.classList.add('pulse');
-}
-
-function updateLevelDisplay() {
-  document.getElementById('levelDisplay').textContent = ROMAN[level - 1] || level;
-}
-
-function showWordToast(item) {
-  const el = document.getElementById('wordToast');
-  el.textContent = `${item.en} — ${item.pt}`;
-  el.classList.remove('show');
-  void el.offsetWidth;
-  el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), 900);
-}
-
-function updateGlossary() {
-  const g = document.getElementById('glossary');
-  // keep title
-  const title = g.querySelector('.glossary-title');
-  g.innerHTML = '';
-  g.appendChild(title);
-  collected.slice(0, 6).forEach((item, i) => {
-    const entry = document.createElement('div');
-    entry.className = 'glossary-entry';
-    entry.style.animationDelay = `${i * 50}ms`;
-    entry.innerHTML = `<div class="glossary-word">${item.en}</div><div class="glossary-pt">${item.pt}</div>`;
-    g.appendChild(entry);
-  });
-}
-
-function showOverlay(which) {
-  document.getElementById('overlayStart').classList.add('hidden');
-  document.getElementById('overlayOver').classList.add('hidden');
-  if (which === 'start') {
-    document.getElementById('overlayStart').classList.remove('hidden');
-  } else if (which === 'over') {
-    document.getElementById('finalScore').textContent = score;
-    const last = collected[0];
-    document.getElementById('lastWord').textContent = last
-      ? `Último termo: ${last.en} — ${last.pt}`
-      : 'Continue praticando!';
-    document.getElementById('overlayOver').classList.remove('hidden');
-  }
-}
-
-// ─── ANIMATION LOOP (for food pulse while running) ────────────────────────────
-let rafId;
-function animate() {
-  if (running && !paused) draw();
-  rafId = requestAnimationFrame(animate);
-}
-animate();
-
-// ─── CONTROLS ────────────────────────────────────────────────────────────────
-document.addEventListener('keydown', e => {
-  const key = e.key;
-  if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','w','a','s','d'].includes(key)) {
-    e.preventDefault();
-  }
-  if (!running) return;
-  if (key === 'p' || key === 'P') {
-    paused = !paused;
-    return;
-  }
-  const map = {
-    ArrowUp:    { x: 0,  y: -1 },
-    ArrowDown:  { x: 0,  y:  1 },
-    ArrowLeft:  { x: -1, y:  0 },
-    ArrowRight: { x: 1,  y:  0 },
-    w:          { x: 0,  y: -1 },
-    s:          { x: 0,  y:  1 },
-    a:          { x: -1, y:  0 },
-    d:          { x: 1,  y:  0 },
-  };
-  const nd = map[key];
-  if (nd && !(nd.x === -dir.x && nd.y === -dir.y)) {
-    nextDir = nd;
-  }
-});
-
-// Touch/swipe support
-let touchStart = null;
-canvas.addEventListener('touchstart', e => {
-  touchStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-}, { passive: true });
-canvas.addEventListener('touchend', e => {
-  if (!touchStart) return;
-  const dx = e.changedTouches[0].clientX - touchStart.x;
-  const dy = e.changedTouches[0].clientY - touchStart.y;
-  if (Math.abs(dx) > Math.abs(dy)) {
-    const nd = dx > 0 ? { x: 1, y: 0 } : { x: -1, y: 0 };
-    if (!(nd.x === -dir.x)) nextDir = nd;
-  } else {
-    const nd = dy > 0 ? { x: 0, y: 1 } : { x: 0, y: -1 };
-    if (!(nd.y === -dir.y)) nextDir = nd;
-  }
-  touchStart = null;
-}, { passive: true });
-
-// ─── BUTTONS ─────────────────────────────────────────────────────────────────
-document.getElementById('btnStart').addEventListener('click', () => {
-  document.getElementById('overlayStart').classList.add('hidden');
-  initGame();
-});
-document.getElementById('btnRestart').addEventListener('click', () => {
-  document.getElementById('overlayOver').classList.add('hidden');
-  initGame();
-});
-
-// ─── RESIZE ──────────────────────────────────────────────────────────────────
-window.addEventListener('resize', () => {
-  if (!running) { resize(); draw(); }
-});
-
-// initial draw
-draw();
-</script>
-</body>
-</html>
+</section>
+<nav class="nav"><div class="nav-in"><ul class="nav-ul">
+  <li><a href="#s1">Tipos de Restaurante</a></li>
+  <li><a href="#s2">Reservas</a></li>
+  <li><a href="#s3">Chegando</a></li>
+  <li><a href="#s4">O Cardápio</a></li>
+  <li><a href="#s5">Pedindo</a></li>
+  <li><a href="#s6">Restrições Alimentares</a></li>
+  <li><a href="#s7">Vinhos</a></li>
+  <li><a href="#s8">Bebidas</a></li>
+  <li><a href="#s9">Cafés & Padarias</a></li>
+  <li><a href="#s10">Bares & Pubs</a></li>
+  <li><a href="#s11">Durante a Refeição</a></li>
+  <li><a href="#s12">Fast Food & Casual</a></li>
+  <li><a href="#s13">A Conta</a></li>
+  <li><a href="#s14">Problemas</a></li>
+  <li><a href="#s15">Gorjetas</a></li>
+</ul></div></nav>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p><main class="main"><p></p>
+<!-- ███ 1 ███ -->
+<section class="sc" id="s1">
+  <div class="sc-tag"><span class="n">1</span> Types of Dining</div>
+  <h2>Tipos de Restaurante e Estabelecimento</h2>
+  <p class="sc-sub">Cada lugar tem seu código, seu vocabulário e suas expectativas.</p>
+  <p class="sc-intro">No exterior, a experiência gastronômica varia enormemente dependendo do tipo de estabelecimento. Saber a diferença entre um bistro e um brasserie, ou entre um diner e um pub, muda completamente como você se comporta, o que espera e como fala.</p>
+  <div class="vg">
+    <div class="vi"><div class="en">fine dining</div><div class="pt">alta gastronomia (reserva obrigatória, dress code)</div></div>
+    <div class="vi"><div class="en">casual dining</div><div class="pt">restaurante casual (sem reserva, ambiente relaxado)</div></div>
+    <div class="vi"><div class="en">bistro / brasserie</div><div class="pt">bistrô / brasserie (francês, refeições simples e elegantes)</div></div>
+    <div class="vi"><div class="en">trattoria / osteria</div><div class="pt">trattoria / osteria (italiano, caseiro e informal)</div></div>
+    <div class="vi"><div class="en">steakhouse</div><div class="pt">churrascaria (estilo americano, carnes grelhadas)</div></div>
+    <div class="vi"><div class="en">pub / gastropub</div><div class="pt">pub (britânico) / gastropub (pub com comida refinada)</div></div>
+    <div class="vi"><div class="en">diner</div><div class="pt">diner (americano, 24h, refeições simples e baratas)</div></div>
+    <div class="vi"><div class="en">food truck / food court</div><div class="pt">food truck / praça de alimentação</div></div>
+    <div class="vi"><div class="en">bakery / patisserie</div><div class="pt">padaria / confeitaria</div></div>
+    <div class="vi"><div class="en">café / coffee shop</div><div class="pt">café / cafeteria</div></div>
+    <div class="vi"><div class="en">bar / lounge / cocktail bar</div><div class="pt">bar / lounge / bar de coquetéis</div></div>
+    <div class="vi"><div class="en">wine bar</div><div class="pt">bar de vinhos</div></div>
+    <div class="vi"><div class="en">buffet / all-you-can-eat</div><div class="pt">buffet / rodízio (coma à vontade)</div></div>
+    <div class="vi"><div class="en">brunch spot</div><div class="pt">lugar de brunch (café da manhã tardio + almoço)</div></div>
+  </div>
+  <div class="bk cultural">
+    <h4>Nota Cultural</h4>
+    <p>Nos EUA, <strong>"diner"</strong> é uma instituição — refeições baratas, servidas o dia todo, com garçonetes que chamam você de "hon" (querido/a). Na Europa, <strong>"brasserie"</strong> não é a mesma coisa que "bistro" — a brasserie é maior e mais movimentada, o bistrô é íntimo. No Japão, <strong>"izakaya"</strong> é o equivalente a um bar com petiscos. Cada cultura tem seus códigos — conhecê-los é parte da experiência.</p>
+  </div>
+</section>
+<div class="sep"><span class="d"></span></div>
+<!-- ███ 2 ███ -->
+<section class="sc" id="s2">
+  <div class="sc-tag"><span class="n">2</span> Reservations</div>
+  <h2>Fazendo Reservas</h2>
+  <p class="sc-sub">Por telefone, por app ou pessoalmente — as frases que garantem sua mesa.</p>
+  <div class="gr"><div class="gr-t">Reservando por telefone</div>
+    <div class="cd"><div class="en">"I'd like to make a reservation for tonight at 8 PM for two people."</div><div class="pt">Gostaria de fazer uma reserva para hoje à noite às 20h para duas pessoas.</div></div>
+    <div class="cd"><div class="en">"Do you have any availability this Saturday evening?"</div><div class="pt">Vocês têm disponibilidade neste sábado à noite?</div></div>
+    <div class="cd"><div class="en">"Could we get a table by the window / on the terrace / in a quiet area?"</div><div class="pt">Poderíamos ter uma mesa perto da janela / no terraço / em uma área tranquila?</div></div>
+    <div class="cd"><div class="en">"It's a special occasion — our anniversary. Is there anything you can arrange?"</div><div class="pt">É uma ocasião especial — nosso aniversário. Tem algo que vocês possam preparar?</div></div>
+    <div class="cd"><div class="en">"One of our guests has a severe nut allergy. Can the kitchen accommodate that?"</div><div class="pt">Um dos nossos convidados tem alergia grave a nozes. A cozinha pode acomodar isso?</div></div>
+    <div class="cd"><div class="en">"I need to cancel / change my reservation. It was under the name Silva for Friday."</div><div class="pt">Preciso cancelar / alterar minha reserva. Estava no nome Silva para sexta-feira.</div></div>
+  </div>
+  <div class="bk tip">
+    <h4>Dica de Ouro</h4>
+    <p>Restaurantes concorridos nos EUA e na Europa usam apps como <strong>OpenTable</strong>, <strong>Resy</strong> e <strong>TheFork</strong>. Reservar por app é mais prático e evita a ligação em inglês. Mas se ligar, tenha pronto: data, horário, número de pessoas e nome. Em restaurantes de alta gastronomia, é comum pedirem <strong>cartão de crédito</strong> para garantir a reserva — e cobrarem <strong>"no-show fee"</strong> (taxa por não comparecer).</p>
+  </div>
+</section>
+<div class="sep"><span class="d"></span></div>
+<!-- ███ 3 ███ -->
+<section class="sc" id="s3">
+  <div class="sc-tag"><span class="n">3</span> Arriving</div>
+  <h2>Chegando ao Restaurante</h2>
+  <p class="sc-sub">Da porta à mesa — tudo o que acontece antes de abrir o cardápio.</p>
+  <div class="gr"><div class="gr-t">Com reserva</div>
+    <div class="cd"><div class="en">"Hi, I have a reservation for two under the name Silva."</div><div class="pt">Oi, tenho uma reserva para dois no nome Silva.</div></div>
+    <div class="cd"><div class="en">"We're a bit early. Can we wait at the bar?"</div><div class="pt">Chegamos um pouco cedo. Podemos esperar no bar?</div></div>
+  </div>
+  <div class="gr"><div class="gr-t">Sem reserva (walk-in)</div>
+    <div class="cd"><div class="en">"Hi, table for two, please. We don't have a reservation."</div><div class="pt">Oi, mesa para dois, por favor. Não temos reserva.</div></div>
+    <div class="cd"><div class="en">"How long is the wait?"</div><div class="pt">Quanto tempo de espera?</div></div>
+    <div class="cd"><div class="en">"Can we sit at the bar while we wait?"</div><div class="pt">Podemos sentar no bar enquanto esperamos?</div></div>
+    <div class="cd"><div class="en">"Could we sit outside / by the window / in a booth?"</div><div class="pt">Podemos sentar do lado de fora / perto da janela / em uma cabine?</div><div class="nt gold"><strong>Booth</strong> = cabine / banco estofado com mesa. Muito comum nos EUA. Mais privativo e confortável que mesa aberta.</div></div>
+    <div class="cd"><div class="en">"Is there a children's menu / a high chair available?"</div><div class="pt">Tem cardápio infantil / cadeirão disponível?</div></div>
+  </div>
+  <div class="gr"><div class="gr-t">O que o anfitrião (host / hostess) vai dizer</div>
+    <div class="cd"><div class="en">"Welcome! How many in your party?"</div><div class="pt">Bem-vindos! Quantos no grupo?</div><div class="nt nude"><strong>"Party"</strong> aqui não é festa — é o termo usado em restaurantes para "grupo". "A party of four" = grupo de quatro pessoas.</div></div>
+    <div class="cd"><div class="en">"Right this way." / "Follow me, please."</div><div class="pt">Por aqui. / Me acompanhe, por favor.</div></div>
+    <div class="cd"><div class="en">"Your server will be right with you."</div><div class="pt">Seu garçom virá em instantes.</div><div class="nt gold"><strong>Server</strong> = garçom/garçonete (termo neutro e preferido nos EUA). Evite "waiter/waitress" — está caindo em desuso em ambientes modernos.</div></div>
+    <div class="cd"><div class="en">"I'm sorry, we're fully booked tonight. Would you like to be put on the waitlist?"</div><div class="pt">Sinto muito, estamos lotados hoje. Gostaria de entrar na lista de espera?</div></div>
+  </div>
+</section>
+<div class="sep"><span class="d"></span></div>
+<!-- ███ 4 ███ -->
+<section class="sc" id="s4">
+  <div class="sc-tag"><span class="n">4</span> The Menu</div>
+  <h2>Lendo e Entendendo o Cardápio</h2>
+  <p class="sc-sub">Appetizers, entrées, sides — o cardápio americano é organizado de forma diferente.</p>
+  <div class="vg">
+    <div class="vi"><div class="en">appetizer / starter</div><div class="pt">entrada</div></div>
+    <div class="vi"><div class="en">entrée (EUA) / main course</div><div class="pt">prato principal</div></div>
+    <div class="vi"><div class="en">side dish / sides</div><div class="pt">acompanhamento</div></div>
+    <div class="vi"><div class="en">dessert</div><div class="pt">sobremesa</div></div>
+    <div class="vi"><div class="en">soup of the day</div><div class="pt">sopa do dia</div></div>
+    <div class="vi"><div class="en">daily special / chef's special</div><div class="pt">prato do dia / especial do chef</div></div>
+    <div class="vi"><div class="en">tasting menu / prix fixe</div><div class="pt">menu degustação / preço fixo</div></div>
+    <div class="vi"><div class="en">à la carte</div><div class="pt">à la carte (cada prato pedido separadamente)</div></div>
+    <div class="vi"><div class="en">dressing (on the side)</div><div class="pt">molho (à parte)</div></div>
+    <div class="vi"><div class="en">garnish</div><div class="pt">guarnição / decoração</div></div>
+  </div>
+  <div class="bk alert">
+    <h4>A Armadilha do "Entrée"</h4>
+    <p>Nos EUA, <strong>"entrée"</strong> significa <strong>prato principal</strong> — não entrada. É o oposto do francês original. Se quiser uma entrada, peça um <strong>"appetizer"</strong> ou <strong>"starter"</strong>. Na Europa, "entrée" mantém o sentido original (entrada). Essa confusão pega muitos viajantes de surpresa.</p>
+  </div>
+  <div class="gr"><div class="gr-t">Perguntas sobre o cardápio</div>
+    <div class="cd"><div class="en">"What do you recommend?" / "What's your most popular dish?"</div><div class="pt">O que você recomenda? / Qual é o prato mais popular de vocês?</div></div>
+    <div class="cd"><div class="en">"What's in this dish?" / "Could you describe this for me?"</div><div class="pt">O que tem nesse prato? / Poderia descrever para mim?</div></div>
+    <div class="cd"><div class="en">"How is this prepared? Is it grilled, fried, or baked?"</div><div class="pt">Como isso é preparado? É grelhado, frito ou assado?</div></div>
+    <div class="cd"><div class="en">"Is this dish spicy?"</div><div class="pt">Esse prato é apimentado?</div></div>
+    <div class="cd"><div class="en">"What does it come with?" / "What are the sides?"</div><div class="pt">Vem com o quê? / Quais são os acompanhamentos?</div></div>
+    <div class="cd"><div class="en">"How big is the portion? Is it enough to share?"</div><div class="pt">A porção é grande? Dá para dividir?</div></div>
+  </div>
+  <div class="vg">
+    <div class="vi"><div class="en">grilled / broiled</div><div class="pt">grelhado</div></div>
+    <div class="vi"><div class="en">fried / deep-fried</div><div class="pt">frito / frito por imersão</div></div>
+    <div class="vi"><div class="en">baked / roasted</div><div class="pt">assado (forno)</div></div>
+    <div class="vi"><div class="en">steamed / boiled</div><div class="pt">no vapor / cozido</div></div>
+    <div class="vi"><div class="en">sautéed</div><div class="pt">salteado</div></div>
+    <div class="vi"><div class="en">raw / rare / medium / well-done</div><div class="pt">cru / mal-passado / ao ponto / bem-passado</div></div>
+    <div class="vi"><div class="en">smoked / cured</div><div class="pt">defumado / curado</div></div>
+    <div class="vi"><div class="en">braised / slow-cooked</div><div class="pt">braseado / cozido lentamente</div></div>
+  </div>
+</section>
+<div class="sep"><span class="d"></span></div>
+<!-- ███ 5 ███ -->
+<section class="sc" id="s5">
+  <div class="sc-tag"><span class="n">5</span> Ordering</div>
+  <h2>Fazendo o Pedido</h2>
+  <p class="sc-sub">Da entrada à sobremesa — como pedir com naturalidade e confiança.</p>
+  <div class="gr"><div class="gr-t">O garçom se apresenta</div>
+    <div class="cd"><div class="en">"Hi, I'm Alex and I'll be your server tonight. Can I start you off with some drinks?"</div><div class="pt">Oi, sou o Alex e serei seu garçom esta noite. Posso começar com as bebidas?</div></div>
+    <div class="cd"><div class="en">"Are you ready to order, or do you need a few more minutes?"</div><div class="pt">Estão prontos para pedir, ou precisam de mais alguns minutos?</div></div>
+  </div>
+  <div class="gr"><div class="gr-t">Fazendo o pedido</div>
+    <div class="cd"><div class="en">"I'll have the grilled salmon, please."</div><div class="pt">Vou querer o salmão grelhado, por favor.</div><div class="nt gold"><strong>"I'll have…"</strong> é a forma mais natural e usada de pedir em restaurantes. Mais elegante que "I want…" e mais direto que "Could I get…"</div></div>
+    <div class="cd"><div class="en">"For my appetizer, I'll do the soup. And for the main, the steak."</div><div class="pt">De entrada, vou de sopa. E de principal, o bife.</div><div class="nt nude"><strong>"I'll do…"</strong> é outra forma muito natural e informal, extremamente comum nos EUA.</div></div>
+    <div class="cd"><div class="en">"Could I get the Caesar salad with the dressing on the side?"</div><div class="pt">Poderia trazer a salada Caesar com o molho à parte?</div></div>
+    <div class="cd"><div class="en">"How would you like your steak? — Medium-rare, please."</div><div class="pt">Como gostaria do seu bife? — Mal-passado puxando para o ponto, por favor.</div></div>
+    <div class="cd"><div class="en">"Can I substitute the fries for a salad?"</div><div class="pt">Posso trocar as batatas fritas por uma salada?</div></div>
+    <div class="cd"><div class="en">"We'd like to share a few appetizers to start."</div><div class="pt">Gostaríamos de dividir algumas entradas para começar.</div></div>
+    <div class="cd"><div class="en">"I'm not sure yet. What would you suggest between the pasta and the risotto?"</div><div class="pt">Ainda não me decidi. O que você sugeriria entre a massa e o risoto?</div></div>
+  </div>
+  <div class="dlg">
+    <div class="dlg-h">Diálogo Prático</div>
+    <div class="dlg-ctx">Restaurante italiano em Nova York — jantar para dois</div>
+    <div class="ln"><div class="av them">SV</div><div class="bb"><div class="en">Good evening! Welcome. Can I get you started with something to drink?</div><div class="pt">Boa noite! Bem-vindos. Posso começar com alguma bebida?</div></div></div>
+    <div class="ln"><div class="av you">You</div><div class="bb"><div class="en">Yes, we'd like a bottle of the Chianti, please. And some still water for the table.</div><div class="pt">Sim, gostaríamos de uma garrafa do Chianti, por favor. E água sem gás para a mesa.</div></div></div>
+    <div class="ln"><div class="av them">SV</div><div class="bb"><div class="en">Great choice. Are you ready to order, or do you need a moment?</div><div class="pt">Ótima escolha. Estão prontos para pedir, ou precisam de um momento?</div></div></div>
+    <div class="ln"><div class="av you">You</div><div class="bb"><div class="en">I think we're ready. We'll share the burrata to start. For my main, I'll have the osso buco. And she'll have the seafood risotto.</div><div class="pt">Acho que estamos prontos. Vamos dividir a burrata de entrada. De principal, eu vou de osso buco. E ela vai querer o risoto de frutos do mar.</div></div></div>
+    <div class="ln"><div class="av them">SV</div><div class="bb"><div class="en">Excellent. The osso buco comes with saffron risotto. Would you like to keep that or substitute something else?</div><div class="pt">Excelente. O osso buco vem com risoto de açafrão. Gostaria de manter ou substituir por algo?</div></div></div>
+    <div class="ln"><div class="av you">You</div><div class="bb"><div class="en">I'll keep it as is. Thank you.</div><div class="pt">Vou manter como está. Obrigado.</div></div></div>
+  </div>
+</section>
+<div class="sep"><span class="d"></span></div>
+<!-- ███ 6 ███ -->
+<section class="sc" id="s6">
+  <div class="sc-tag"><span class="n">6</span> Dietary Needs</div>
+  <h2>Restrições Alimentares e Alergias</h2>
+  <p class="sc-sub">Comunicar isso com clareza pode literalmente salvar sua vida.</p>
+  <div class="gr"><div class="gr-t">Comunicando alergias</div>
+    <div class="cd"><div class="en">"I have a severe allergy to peanuts / shellfish / gluten / dairy."</div><div class="pt">Tenho alergia grave a amendoim / frutos do mar / glúten / laticínios.</div></div>
+    <div class="cd"><div class="en">"Does this dish contain any nuts / eggs / soy?"</div><div class="pt">Esse prato contém nozes / ovos / soja?</div></div>
+    <div class="cd"><div class="en">"Can the kitchen prepare this without [ingredient]?"</div><div class="pt">A cozinha pode preparar isso sem [ingrediente]?</div></div>
+    <div class="cd"><div class="en">"This is a medical allergy, not a preference. It's very serious."</div><div class="pt">É uma alergia médica, não uma preferência. É muito sério.</div></div>
+  </div>
+  <div class="gr"><div class="gr-t">Dietas e preferências</div>
+    <div class="cd"><div class="en">"I'm vegetarian / vegan / pescatarian."</div><div class="pt">Sou vegetariano(a) / vegano(a) / pescetariano(a) (come peixe mas não carne).</div></div>
+    <div class="cd"><div class="en">"Do you have any gluten-free / dairy-free / sugar-free options?"</div><div class="pt">Vocês têm opções sem glúten / sem lactose / sem açúcar?</div></div>
+    <div class="cd"><div class="en">"Is this dish suitable for someone who doesn't eat pork?"</div><div class="pt">Esse prato é adequado para quem não come carne de porco?</div></div>
+    <div class="cd"><div class="en">"Do you have a separate menu for allergies?"</div><div class="pt">Vocês têm um cardápio separado para alergias?</div></div>
+  </div>
+  <div class="vg">
+    <div class="vi"><div class="en">peanuts / tree nuts</div><div class="pt">amendoim / castanhas</div></div>
+    <div class="vi"><div class="en">shellfish / seafood</div><div class="pt">crustáceos / frutos do mar</div></div>
+    <div class="vi"><div class="en">gluten / wheat</div><div class="pt">glúten / trigo</div></div>
+    <div class="vi"><div class="en">dairy / lactose</div><div class="pt">laticínios / lactose</div></div>
+    <div class="vi"><div class="en">eggs / soy</div><div class="pt">ovos / soja</div></div>
+    <div class="vi"><div class="en">MSG (monosodium glutamate)</div><div class="pt">glutamato monossódico</div></div>
+  </div>
+</section>
+<div class="sep"><span class="d"></span></div>
+<!-- ███ 7 ███ -->
+<section class="sc" id="s7">
+  <div class="sc-tag"><span class="n">7</span> Wine</div>
+  <h2>Vinhos — Escolhendo, Pedindo e Degustando</h2>
+  <p class="sc-sub">O ritual do vinho em restaurantes no exterior — sem medo de errar.</p>
+  <div class="gr"><div class="gr-t">Pedindo vinho</div>
+    <div class="cd"><div class="en">"Could we see the wine list?"</div><div class="pt">Podemos ver a carta de vinhos?</div></div>
+    <div class="cd"><div class="en">"I'd like a glass of red / white / rosé."</div><div class="pt">Gostaria de uma taça de tinto / branco / rosé.</div></div>
+    <div class="cd"><div class="en">"We'd like a bottle. What would you recommend to pair with the steak / seafood?"</div><div class="pt">Gostaríamos de uma garrafa. O que recomendaria para harmonizar com o bife / frutos do mar?</div><div class="nt gold"><strong>"Pair with"</strong> = harmonizar com. Pedir sugestão de harmonização é muito natural e apreciado pelo sommelier.</div></div>
+    <div class="cd"><div class="en">"Something full-bodied / light / dry / sweet, please."</div><div class="pt">Algo encorpado / leve / seco / doce, por favor.</div></div>
+    <div class="cd"><div class="en">"What do you have by the glass?"</div><div class="pt">O que vocês têm em taça?</div></div>
+    <div class="cd"><div class="en">"Could you recommend something in the $40–60 range?"</div><div class="pt">Poderia recomendar algo na faixa de $40–60?</div></div>
+  </div>
+  <div class="gr"><div class="gr-t">O ritual da degustação</div>
+    <div class="cd"><div class="en">[O sommelier apresenta a garrafa] "This is the 2019 Barolo you ordered."</div><div class="pt">[Você confirma] Basta acenar com a cabeça ou dizer "Yes, that's the one."</div></div>
+    <div class="cd"><div class="en">[Ele serve um pouco para você provar] Gire levemente a taça, cheire, prove.</div><div class="pt">O objetivo não é decidir se você gosta — é verificar se o vinho não está defeituoso (oxidado, com rolha).</div></div>
+    <div class="cd"><div class="en">"That's lovely." / "That's perfect, thank you."</div><div class="pt">Está ótimo. / Está perfeito, obrigado. — Frases de aprovação.</div></div>
+    <div class="cd"><div class="en">"I think this wine might be corked."</div><div class="pt">Acho que esse vinho pode estar com defeito de rolha.</div><div class="nt deep"><strong>"Corked"</strong> = com gosto/cheiro de rolha estragada (mofo). É perfeitamente aceitável recusar uma garrafa com defeito. O restaurante troca sem custo.</div></div>
+  </div>
+  <div class="vg">
+    <div class="vi"><div class="en">red / white / rosé / sparkling</div><div class="pt">tinto / branco / rosé / espumante</div></div>
+    <div class="vi"><div class="en">dry / sweet / semi-sweet</div><div class="pt">seco / doce / meio-seco</div></div>
+    <div class="vi"><div class="en">full-bodied / light-bodied</div><div class="pt">encorpado / leve</div></div>
+    <div class="vi"><div class="en">oaky / fruity / earthy</div><div class="pt">amadeirado / frutado / terroso</div></div>
+    <div class="vi"><div class="en">tannins / acidity</div><div class="pt">taninos / acidez</div></div>
+    <div class="vi"><div class="en">vintage / reserve</div><div class="pt">safra / reserva</div></div>
+    <div class="vi"><div class="en">sommelier / wine steward</div><div class="pt">sommelier</div></div>
+    <div class="vi"><div class="en">house wine</div><div class="pt">vinho da casa</div></div>
+  </div>
+</section>
+<div class="sep"><span class="d"></span></div>
+<!-- ███ 8 ███ -->
+<section class="sc" id="s8">
+  <div class="sc-tag"><span class="n">8</span> Drinks</div>
+  <h2>Bebidas — Além do Vinho</h2>
+  <p class="sc-sub">Coquetéis, cervejas, água, sucos e tudo o que você pode pedir para beber.</p>
+  <div class="gr"><div class="gr-t">Pedindo bebidas</div>
+    <div class="cd"><div class="en">"I'll have a gin and tonic / a margarita / a whiskey sour."</div><div class="pt">Vou querer um gin tônica / uma margarita / um whiskey sour.</div></div>
+    <div class="cd"><div class="en">"What beers do you have on tap?"</div><div class="pt">Quais cervejas vocês têm no chope?</div><div class="nt gold"><strong>"On tap"</strong> = no chope (tirado da torneira). <strong>"Bottled"</strong> = em garrafa. <strong>"Canned"</strong> = em lata.</div></div>
+    <div class="cd"><div class="en">"Do you have any local craft beers?"</div><div class="pt">Vocês têm cervejas artesanais locais?</div></div>
+    <div class="cd"><div class="en">"A sparkling water with lime, please." / "Still water for the table."</div><div class="pt">Uma água com gás e limão, por favor. / Água sem gás para a mesa.</div></div>
+    <div class="cd"><div class="en">"Can I get a soft drink / a lemonade / an iced tea?"</div><div class="pt">Posso pedir um refrigerante / uma limonada / um chá gelado?</div></div>
+    <div class="cd"><div class="en">"I'll have a coffee after dinner. Espresso, please."</div><div class="pt">Vou querer um café após o jantar. Espresso, por favor.</div></div>
+    <div class="cd"><div class="en">"On the rocks / neat / with a splash of water."</div><div class="pt">Com gelo / puro / com um toque de água.</div><div class="nt nude"><strong>On the rocks</strong> = com gelo. <strong>Neat</strong> = puro, sem gelo, temperatura ambiente. <strong>Straight up</strong> = misturado com gelo e coado (servido frio mas sem gelo no copo).</div></div>
+  </div>
+</section>
+<div class="sep"><span class="d"></span></div>
+<!-- ███ 9 ███ -->
+<section class="sc" id="s9">
+  <div class="sc-tag"><span class="n">9</span> Cafés & Bakeries</div>
+  <h2>Cafés e Padarias</h2>
+  <p class="sc-sub">Starbucks, cafés independentes e padarias artesanais — o vocabulário do dia a dia.</p>
+  <div class="gr"><div class="gr-t">Pedindo café</div>
+    <div class="cd"><div class="en">"Can I get a large latte with oat milk?"</div><div class="pt">Posso pedir um latte grande com leite de aveia?</div></div>
+    <div class="cd"><div class="en">"A flat white, please. For here." / "An iced americano. To go."</div><div class="pt">Um flat white, por favor. Para tomar aqui. / Um americano gelado. Para viagem.</div><div class="nt gold"><strong>"For here"</strong> = para consumir no local. <strong>"To go"</strong> (EUA) ou <strong>"Takeaway"</strong> (UK) = para viagem. Sempre vão perguntar.</div></div>
+    <div class="cd"><div class="en">"What's the difference between your medium and large?"</div><div class="pt">Qual é a diferença entre o médio e o grande de vocês?</div></div>
+    <div class="cd"><div class="en">"Can I have an extra shot of espresso?"</div><div class="pt">Posso adicionar uma dose extra de espresso?</div></div>
+    <div class="cd"><div class="en">"Do you have any sugar-free syrups?"</div><div class="pt">Vocês têm xaropes sem açúcar?</div></div>
+  </div>
+  <div class="gr"><div class="gr-t">Na padaria</div>
+    <div class="cd"><div class="en">"What's fresh today?" / "Were these baked this morning?"</div><div class="pt">O que tem fresco hoje? / Esses foram assados hoje de manhã?</div></div>
+    <div class="cd"><div class="en">"I'll have a croissant and a pain au chocolat, please."</div><div class="pt">Vou querer um croissant e um pain au chocolat, por favor.</div></div>
+    <div class="cd"><div class="en">"Could I get a slice of that cake?" / "Can I try a sample?"</div><div class="pt">Poderia me dar uma fatia daquele bolo? / Posso experimentar uma amostra?</div></div>
+    <div class="cd"><div class="en">"Do you have anything gluten-free?"</div><div class="pt">Vocês têm algo sem glúten?</div></div>
+  </div>
+  <div class="bk cultural">
+    <h4>Nota Cultural — Starbucks nos EUA</h4>
+    <p>Na Starbucks, os tamanhos são: <strong>Tall</strong> (pequeno), <strong>Grande</strong> (médio) e <strong>Venti</strong> (grande). Sim, "Grande" é o médio. Eles vão pedir seu <strong>nome</strong> para escrever no copo — e provavelmente vão escrever errado. Faz parte da experiência. Se seu nome for difícil, considere usar um apelido simples.</p>
+  </div>
+</section>
+<div class="sep"><span class="d"></span></div>
+<!-- ███ 10 ███ -->
+<section class="sc" id="s10">
+  <div class="sc-tag"><span class="n">10</span> Bars & Pubs</div>
+  <h2>Bares e Pubs</h2>
+  <p class="sc-sub">A cultura é diferente — e como você pede também.</p>
+  <div class="gr"><div class="gr-t">Frases essenciais no bar</div>
+    <div class="cd"><div class="en">"What do you have on tap?"</div><div class="pt">O que vocês têm no chope?</div></div>
+    <div class="cd"><div class="en">"I'll have a pint of the IPA, please."</div><div class="pt">Quero uma pint da IPA, por favor.</div><div class="nt gold"><strong>Pint</strong> = medida padrão de cerveja (~473ml nos EUA, ~568ml no UK). É a forma mais comum de pedir cerveja no bar.</div></div>
+    <div class="cd"><div class="en">"Can I start a tab?" / "I'll pay as I go."</div><div class="pt">Posso abrir uma conta? / Vou pagar a cada pedido.</div></div>
+    <div class="cd"><div class="en">"What's your signature cocktail?"</div><div class="pt">Qual é o coquetel especial da casa?</div></div>
+    <div class="cd"><div class="en">"Last call for drinks!" → "One more round, please."</div><div class="pt">"Último pedido de bebidas!" → "Mais uma rodada, por favor."</div><div class="nt nude"><strong>"Last call"</strong> = último pedido antes de fechar. <strong>"Round"</strong> = rodada (uma bebida para cada pessoa do grupo).</div></div>
+    <div class="cd"><div class="en">"I'll close my tab now, please."</div><div class="pt">Vou fechar minha conta agora, por favor.</div></div>
+  </div>
+  <div class="bk cultural">
+    <h4>Pubs Britânicos — Como Funciona</h4>
+    <p>Em pubs no Reino Unido, <strong>não há garçom</strong> — você vai até o balcão, faz o pedido e paga na hora. Não há gorjeta obrigatória. Se quiser ser generoso, diga ao barman: <strong>"And one for yourself"</strong> (E uma para você) — é a forma britânica de dar gorjeta no pub. A comida de pub (<strong>"pub grub"</strong>) é servida normalmente até as 21h–22h.</p>
+  </div>
+</section>
+<div class="sep"><span class="d"></span></div>
+<!-- ███ 11 ███ -->
+<section class="sc" id="s11">
+  <div class="sc-tag"><span class="n">11</span> During the Meal</div>
+  <h2>Durante a Refeição</h2>
+  <p class="sc-sub">Pedidos extras, elogios ao chef e tudo que acontece entre o primeiro garfo e a sobremesa.</p>
+  <div class="gr"><div class="gr-t">Pedidos durante a refeição</div>
+    <div class="cd"><div class="en">"Could we get some more bread / butter / water, please?"</div><div class="pt">Poderia trazer mais pão / manteiga / água, por favor?</div></div>
+    <div class="cd"><div class="en">"Excuse me, could I get another napkin?"</div><div class="pt">Com licença, poderia trazer outro guardanapo?</div></div>
+    <div class="cd"><div class="en">"Could I have some salt and pepper / hot sauce / olive oil?"</div><div class="pt">Poderia trazer sal e pimenta / molho picante / azeite?</div></div>
+    <div class="cd"><div class="en">"I'd like another glass of wine, please."</div><div class="pt">Gostaria de mais uma taça de vinho, por favor.</div></div>
+    <div class="cd"><div class="en">"This is delicious! My compliments to the chef."</div><div class="pt">Está delicioso! Meus cumprimentos ao chef.</div></div>
+  </div>
+  <div class="gr"><div class="gr-t">Quando o garçom passa para verificar</div>
+    <div class="cd"><div class="en">"How is everything?" → "Everything is great, thank you."</div><div class="pt">"Como está tudo?" → "Está tudo ótimo, obrigado."</div><div class="nt muted">Nos EUA, o garçom vai passar na mesa várias vezes para perguntar <strong>"How is everything?"</strong> — é procedimento padrão, não invasão. Responda brevemente.</div></div>
+    <div class="cd"><div class="en">"Can I get you anything else?" → "We're good for now, thanks."</div><div class="pt">"Posso trazer mais alguma coisa?" → "Estamos bem por agora, obrigado."</div></div>
+    <div class="cd"><div class="en">"Would you like to see the dessert menu?" → "Yes, please." / "Just the check, please."</div><div class="pt">"Gostariam de ver o cardápio de sobremesa?" → "Sim, por favor." / "Só a conta, por favor."</div></div>
+  </div>
+</section>
+<div class="sep"><span class="d"></span></div>
+<!-- ███ 12 ███ -->
+<section class="sc" id="s12">
+  <div class="sc-tag"><span class="n">12</span> Fast Food & Casual</div>
+  <h2>Fast Food e Restaurantes Casuais</h2>
+  <p class="sc-sub">McDonald's, Chick-fil-A, Chipotle — a linguagem é diferente e mais rápida.</p>
+  <div class="gr"><div class="gr-t">Pedindo no balcão / drive-through</div>
+    <div class="cd"><div class="en">"Can I get a number 3 with a Coke?" / "I'll have the combo meal."</div><div class="pt">Posso pedir o número 3 com uma Coca? / Vou querer o combo.</div></div>
+    <div class="cd"><div class="en">"For here or to go?" → "To go, please."</div><div class="pt">"Para comer aqui ou levar?" → "Para viagem, por favor."</div></div>
+    <div class="cd"><div class="en">"Would you like to make it a meal?" → "Yes, with fries and a drink."</div><div class="pt">"Gostaria de fazer um combo?" → "Sim, com batata e bebida."</div></div>
+    <div class="cd"><div class="en">"No onions, please." / "Extra pickles." / "Hold the mayo."</div><div class="pt">Sem cebola, por favor. / Picles extra. / Sem maionese.</div><div class="nt gold"><strong>"Hold the…"</strong> = tirar / remover um ingrediente. Expressão muito usada em fast food: "Hold the lettuce" (sem alface), "Hold the cheese" (sem queijo).</div></div>
+    <div class="cd"><div class="en">"Can I get that with no ice?" / "Light ice, please."</div><div class="pt">Pode ser sem gelo? / Pouco gelo, por favor.</div><div class="nt nude">Nos EUA, bebidas vêm com <strong>muito gelo</strong> por padrão. Se não quiser, precisa pedir. <strong>"No ice"</strong> ou <strong>"light ice"</strong>.</div></div>
+  </div>
+</section>
+<div class="sep"><span class="d"></span></div>
+<div class="banner"><div class="tc"><h3>A Conta e <em>Depois</em></h3>
+<p>As últimas seções cobrem como pedir a conta, dividir, resolver problemas e dar gorjeta.</p></div></div>
+<!-- ███ 13 ███ -->
+<section class="sc" id="s13">
+  <div class="sc-tag"><span class="n">13</span> The Bill</div>
+  <h2>Pedindo e Entendendo a Conta</h2>
+  <p class="sc-sub">Check, bill, tab — e como dividir sem constrangimento.</p>
+  <div class="gr"><div class="gr-t">Pedindo a conta</div>
+    <div class="cd"><div class="en">"Could we get the check, please?"</div><div class="pt">Podemos pedir a conta, por favor?</div><div class="nt gold"><strong>"Check"</strong> (EUA) ou <strong>"bill"</strong> (UK/Europa) = conta. Nos EUA, use "check". No Reino Unido, use "bill".</div></div>
+    <div class="cd"><div class="en">"We're ready for the bill whenever you get a chance."</div><div class="pt">Estamos prontos para a conta quando puder.</div></div>
+  </div>
+  <div class="gr"><div class="gr-t">Dividindo a conta</div>
+    <div class="cd"><div class="en">"Could we split the check?" / "Separate checks, please."</div><div class="pt">Podemos dividir a conta? / Contas separadas, por favor.</div></div>
+    <div class="cd"><div class="en">"I'll get this one." / "This is on me."</div><div class="pt">Essa é minha. / Essa é por minha conta.</div></div>
+    <div class="cd"><div class="en">"Can we split it three ways?"</div><div class="pt">Podemos dividir em três?</div></div>
+    <div class="cd"><div class="en">"Put it all on one check, please. I'll pay."</div><div class="pt">Coloque tudo em uma conta só, por favor. Eu pago.</div></div>
+  </div>
+  <div class="gr"><div class="gr-t">Formas de pagamento</div>
+    <div class="cd"><div class="en">"Do you take credit cards?" / "Can I pay with Apple Pay?"</div><div class="pt">Vocês aceitam cartão de crédito? / Posso pagar com Apple Pay?</div></div>
+    <div class="cd"><div class="en">"I'll pay cash." / "Keep the change."</div><div class="pt">Vou pagar em dinheiro. / Fique com o troco.</div></div>
+  </div>
+  <div class="bk note">
+    <h4>Como Funciona nos EUA</h4>
+    <p>Nos EUA, o garçom traz a conta e você coloca o cartão na pasta. Ele leva, passa o cartão e volta com o recibo para você assinar e <strong>escrever a gorjeta</strong>. Há duas linhas: <strong>"Tip"</strong> (gorjeta) e <strong>"Total"</strong> (valor final com gorjeta). Você preenche ambas. Se pagar em dinheiro, deixe o valor total + gorjeta na pasta. Na Europa, o processo é diferente — geralmente pagam na mesa com a maquininha portátil.</p>
+  </div>
+</section>
+<div class="sep"><span class="d"></span></div>
+<!-- ███ 14 ███ -->
+<section class="sc" id="s14">
+  <div class="sc-tag"><span class="n">14</span> Problems</div>
+  <h2>Problemas e Reclamações</h2>
+  <p class="sc-sub">Pedido errado, comida fria, cobrança indevida — como resolver com firmeza e elegância.</p>
+  <div class="gr"><div class="gr-t">Pedido errado ou incompleto</div>
+    <div class="cd"><div class="en">"Excuse me, this isn't what I ordered. I asked for the salmon, not the chicken."</div><div class="pt">Com licença, não foi isso que pedi. Pedi o salmão, não o frango.</div></div>
+    <div class="cd"><div class="en">"I'm still waiting for my appetizer. We ordered it 20 minutes ago."</div><div class="pt">Ainda estou esperando minha entrada. Pedimos há 20 minutos.</div></div>
+    <div class="cd"><div class="en">"I asked for my steak medium-rare, but this is well-done. Could you send it back?"</div><div class="pt">Pedi meu bife mal-passado, mas está bem-passado. Poderia devolver?</div></div>
+    <div class="cd"><div class="en">"I specifically said no onions. There are onions in this."</div><div class="pt">Eu disse especificamente sem cebola. Tem cebola nisso.</div></div>
+  </div>
+  <div class="gr"><div class="gr-t">Qualidade e higiene</div>
+    <div class="cd"><div class="en">"This dish is cold. Could you heat it up or bring a fresh one?"</div><div class="pt">Esse prato está frio. Poderia aquecer ou trazer um novo?</div></div>
+    <div class="cd"><div class="en">"There's a hair / something in my food."</div><div class="pt">Tem um cabelo / algo na minha comida.</div></div>
+    <div class="cd"><div class="en">"This doesn't taste right. I think it might be off."</div><div class="pt">O gosto não está certo. Acho que pode estar estragado.</div><div class="nt deep"><strong>"Off"</strong> = estragado / fora do ponto. Forma educada de dizer que algo pode estar vencido ou mal conservado.</div></div>
+    <div class="cd"><div class="en">"This glass / plate isn't clean. Could I get a new one?"</div><div class="pt">Esse copo / prato não está limpo. Poderia trazer outro?</div></div>
+  </div>
+  <div class="gr"><div class="gr-t">Problemas com a conta</div>
+    <div class="cd"><div class="en">"I think there's a mistake on the bill. We didn't order this item."</div><div class="pt">Acho que tem um erro na conta. Não pedimos esse item.</div></div>
+    <div class="cd"><div class="en">"We were charged for three drinks but we only had two."</div><div class="pt">Fomos cobrados por três bebidas, mas só tomamos duas.</div></div>
+    <div class="cd"><div class="en">"Is the service charge / gratuity already included?"</div><div class="pt">A taxa de serviço / gorjeta já está inclusa?</div></div>
+  </div>
+  <div class="bk tip">
+    <h4>Dica de Ouro</h4>
+    <p>Se houver um problema sério, mantenha a calma e diga: <strong>"I'd appreciate it if you could fix this. I don't want to make a big deal out of it, but this needs to be addressed."</strong> (Ficaria grato se pudessem resolver. Não quero fazer um escândalo, mas isso precisa ser corrigido.) Na maioria dos casos, restaurantes retiram o item da conta ou oferecem uma cortesia. Se não resolverem, peça o gerente: <strong>"Could I speak with the manager?"</strong></p>
+  </div>
+</section>
+<div class="sep"><span class="d"></span></div>
+<!-- ███ 15 ███ -->
+<section class="sc" id="s15">
+  <div class="sc-tag"><span class="n">15</span> Tipping</div>
+  <h2>Gorjetas em Restaurantes e Bares</h2>
+  <p class="sc-sub">O guia definitivo — por país e por situação.</p>
+  <p class="sc-intro">A gorjeta em restaurantes é provavelmente o aspecto cultural que mais confunde brasileiros no exterior. Em alguns países é obrigatória, em outros é ofensiva. Aqui está tudo o que você precisa saber.</p>
+  <div class="gr"><div class="gr-t">Estados Unidos — gorjeta é obrigatória na prática</div>
+    <div class="cd"><div class="en">Restaurants (sit-down): 18–20% of the pre-tax total</div><div class="pt">Restaurantes (com serviço): 18–20% do total antes dos impostos.</div><div class="nt rose">Nos EUA, garçons recebem salário mínimo baixíssimo ($2–3/hora em muitos estados). A gorjeta é a maior parte da renda deles. <strong>Dar menos de 15% é considerado rude.</strong> 20% é o padrão atual para bom serviço.</div></div>
+    <div class="cd"><div class="en">Bartender: $1–2 per drink, or 15–20% of the tab</div><div class="pt">Barman: $1–2 por bebida, ou 15–20% da conta.</div></div>
+    <div class="cd"><div class="en">Coffee shop (counter service): $1–2 or optional</div><div class="pt">Cafeteria (balcão): $1–2 ou opcional.</div></div>
+    <div class="cd"><div class="en">Takeout / to-go: 10% is a nice gesture, but not expected</div><div class="pt">Para viagem: 10% é um gesto simpático, mas não esperado.</div></div>
+    <div class="cd"><div class="en">Delivery: 15–20% or at least $3–5</div><div class="pt">Entrega: 15–20% ou no mínimo $3–5.</div></div>
+  </div>
+  <div class="gr"><div class="gr-t">Europa e resto do mundo</div>
+    <div class="cd"><div class="en">UK: Service charge often included (12.5%). If not, 10–15% is appreciated.</div><div class="pt">UK: Taxa de serviço geralmente inclusa (12,5%). Se não, 10–15% é apreciado.</div></div>
+    <div class="cd"><div class="en">France / Italy: Service compris (included). Rounding up is a nice gesture.</div><div class="pt">França / Itália: Serviço incluso. Arredondar para cima é um gesto gentil.</div></div>
+    <div class="cd"><div class="en">Germany / Austria: Round up to the nearest euro or add 5–10%.</div><div class="pt">Alemanha / Áustria: Arredonde para o euro mais próximo ou acrescente 5–10%.</div></div>
+    <div class="cd"><div class="en">Japan: Tipping is offensive. Never tip.</div><div class="pt">Japão: Gorjeta é ofensiva. Nunca dê gorjeta.</div></div>
+    <div class="cd"><div class="en">Australia: Not expected, but 10% for exceptional service is appreciated.</div><div class="pt">Austrália: Não esperada, mas 10% para serviço excepcional é apreciado.</div></div>
+  </div>
+  <div class="bk cultural">
+    <h4>Frase Essencial Sobre Gorjeta</h4>
+    <p>Se estiver em dúvida em qualquer país, pergunte discretamente: <strong>"Is the tip included, or should I add one?"</strong> (A gorjeta está inclusa ou devo acrescentar?) — Essa frase funciona em qualquer lugar do mundo e ninguém vai achar estranho. E lembre-se: nos EUA, se a conta já vier com <strong>"Gratuity: 18%"</strong>, isso já é a gorjeta — não precisa dar novamente por cima.</p>
+  </div>
+</section>
+<div class="sep"><span class="d"></span></div>
+<footer class="footer">
+  <div class="footer-b">Dining & Drinks — English for Travelers</div>
+  <p class="footer-t">Conteúdo exclusivo para fins educacionais.<br>Desenvolvido com excelência para alunos que buscam comunicação internacional de alto nível.</p>
+</footer>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p></main>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
