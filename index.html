@@ -1,31 +1,39 @@
-<p>Dining & Drinks — English for Travelers</p>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dining &amp; Drinks — English for Travelers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400&family=JetBrains+Mono&family=Manrope:wght@400;500;600;700&family=Bodoni+Moda:ital,wght@0,400;0,500;1,400&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F5F2F0;
-  --bg-warm:#EDE8E4;
+  --bg:#F4F3EE;
+  --bg-warm:#EAE9E1;
   --bg-card:#FFFFFF;
-  --ink:#141214;
-  --ink-s:#2E2A2C;
-  --ink-m:#8A8486;
-  --black:#1A1618;
-  --black-d:#0E0C0D;
-  --black-l:#2A2628;
-  --nude:#D4B8A8;
-  --nude-l:#E4CFC2;
-  --nude-d:#B89A88;
-  --nude-bg:#F9F4F1;
-  --gold:#B09860;
-  --gold-l:#C8B07A;
-  --gold-d:#8A7648;
-  --gold-bg:#F8F5EE;
-  --rose:#C49A8A;
-  --rose-bg:#FAF2EF;
-  --muted:#7A7274;
-  --muted-bg:#F2EFED;
-  --deep:#5A4A4E;
-  --deep-bg:#F0ECEA;
-  --brd:#DED8D4;
-  --brd-l:#E8E4E0;
+  --ink:#131A16;
+  --ink-s:#2A332E;
+  --ink-m:#7D877F;
+  --black:#1F3A2E;
+  --black-d:#12241B;
+  --black-l:#2E5442;
+  --nude:#A9BBA9;
+  --nude-l:#C9D5C7;
+  --nude-d:#5E7B64;
+  --nude-bg:#F0F4EF;
+  --gold:#B8A067;
+  --gold-l:#C9B37E;
+  --gold-d:#857040;
+  --gold-bg:#F8F5EA;
+  --rose:#B8765C;
+  --rose-bg:#F8EFEA;
+  --muted:#6E776F;
+  --muted-bg:#EEF0EB;
+  --deep:#2E5442;
+  --deep-bg:#E8EFEA;
+  --brd:#DADDD3;
+  --brd-l:#E6E8E0;
   --fd:'Cormorant',Georgia,serif;
   --fb:'Manrope',sans-serif;
   --fm:'JetBrains Mono',monospace;
@@ -34,21 +42,21 @@
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.78;font-size:16.5px;-webkit-font-smoothing:antialiased}
 
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(155deg,#0E0C0D 0%,#1A1618 30%,#2A2628 55%,#1A1618 80%,#0E0C0D 100%)}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 42% at 35% 48%,rgba(176,152,96,.06) 0%,transparent 55%),radial-gradient(ellipse 40% 35% at 65% 45%,rgba(212,184,168,.04) 0%,transparent 50%);z-index:1}
-.hero::after{content:'';position:absolute;inset:0;opacity:.1;background-image:url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='<a href="http://www.w3.org/2000/svg" class="redactor-autoparser-object">http://www.w3.org/2000/svg</a>'%3E%3Ccircle cx='40' cy='40' r='.8' fill='%23C8B07A' fill-opacity='.06'/%3E%3C/svg%3E");z-index:1}
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(155deg,#12241B 0%,#1F3A2E 30%,#2E5442 55%,#1F3A2E 80%,#12241B 100%)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 42% at 35% 48%,rgba(201,179,126,.06) 0%,transparent 55%),radial-gradient(ellipse 40% 35% at 65% 45%,rgba(169,187,169,.04) 0%,transparent 50%);z-index:1}
+.hero::after{content:'';position:absolute;inset:0;opacity:.1;background-image:url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='.8' fill='%23C9B37E' fill-opacity='.06'/%3E%3C/svg%3E");z-index:1}
 .hero-c{position:relative;z-index:2;text-align:center;padding:2rem;max-width:780px;animation:hIn 1.3s ease-out}
 @keyframes hIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-.hero-badge{display:inline-block;font-family:var(--fb);font-size:.63rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-l);border:1px solid rgba(200,176,122,.18);padding:.42rem 1.3rem;border-radius:100px;margin-bottom:2rem;background:rgba(200,176,122,.04)}
-.hero h1{font-family:var(--fd);font-size:clamp(2.6rem,5.8vw,4.8rem);font-weight:400;color:#F5F2F0;line-height:1.1;letter-spacing:.01em}
+.hero-badge{display:inline-block;font-family:var(--fb);font-size:.63rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-l);border:1px solid rgba(201,179,126,.18);padding:.42rem 1.3rem;border-radius:100px;margin-bottom:2rem;background:rgba(201,179,126,.04)}
+.hero h1{font-family:var(--fd);font-size:clamp(2.6rem,5.8vw,4.8rem);font-weight:400;color:#F4F3EE;line-height:1.1;letter-spacing:.01em}
 .hero h1 em{font-style:italic;color:var(--gold-l);font-weight:300}
 .hero-line{width:45px;height:1px;background:var(--gold);margin:1.8rem auto;opacity:.2}
-.hero-sub{font-family:var(--fd);font-size:1.15rem;color:rgba(245,242,240,.3);font-style:italic;line-height:1.7;max-width:480px;margin:0 auto;letter-spacing:.01em}
-.hero-scroll{margin-top:3rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;color:rgba(245,242,240,.12);font-family:var(--fb);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;animation:pls 2.5s ease-in-out infinite}
-.hero-scroll svg{width:15px;height:15px;stroke:rgba(245,242,240,.12)}
+.hero-sub{font-family:var(--fd);font-size:1.15rem;color:rgba(244,243,238,.3);font-style:italic;line-height:1.7;max-width:480px;margin:0 auto;letter-spacing:.01em}
+.hero-scroll{margin-top:3rem;display:flex;flex-direction:column;align-items:center;gap:.4rem;color:rgba(244,243,238,.12);font-family:var(--fb);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;animation:pls 2.5s ease-in-out infinite}
+.hero-scroll svg{width:15px;height:15px;stroke:rgba(244,243,238,.12)}
 @keyframes pls{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:.8;transform:translateY(5px)}}
 
-.nav{position:sticky;top:0;z-index:100;background:rgba(245,242,240,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--brd-l)}
+.nav{position:sticky;top:0;z-index:100;background:rgba(244,243,238,.94);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--brd-l)}
 .nav-in{max-width:1200px;margin:0 auto;padding:0 2rem;overflow-x:auto;scrollbar-width:none}.nav-in::-webkit-scrollbar{display:none}
 .nav-ul{display:flex;list-style:none;white-space:nowrap}
 .nav-ul a{display:block;padding:.85rem .9rem;font-family:var(--fb);font-size:.6rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-m);text-decoration:none;border-bottom:2px solid transparent;transition:all .3s ease}
@@ -65,20 +73,20 @@ body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.7
 .gr{margin-bottom:2.3rem}
 .gr-t{font-family:var(--fb);font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-s);margin-bottom:.8rem;padding-bottom:.4rem;border-bottom:1px solid var(--brd)}
 .cd{background:var(--bg-card);border:1px solid var(--brd-l);border-radius:var(--r);padding:1.1rem 1.35rem;margin-bottom:.46rem;transition:all .25s ease}
-.cd:hover{border-color:var(--brd);box-shadow:0 4px 16px rgba(20,18,20,.05);transform:translateY(-1px)}
+.cd:hover{border-color:var(--brd);box-shadow:0 4px 16px rgba(18,36,27,.05);transform:translateY(-1px)}
 .cd .en{font-family:var(--fd);font-size:1.12rem;font-weight:500;color:var(--ink);line-height:1.48;margin-bottom:.1rem;letter-spacing:.005em}
 .cd .pt{font-family:var(--fb);font-size:.82rem;color:var(--ink-m);line-height:1.5}
 
 .nt{margin-top:.45rem;font-family:var(--fb);font-size:.71rem;padding:.42rem .72rem;border-radius:6px;line-height:1.55;border-left:3px solid}
 .nt.gold{color:var(--gold-d);background:var(--gold-bg);border-color:var(--gold)}
 .nt.nude{color:var(--nude-d);background:var(--nude-bg);border-color:var(--nude)}
-.nt.rose{color:#8A5A4A;background:var(--rose-bg);border-color:var(--rose)}
+.nt.rose{color:#8F5640;background:var(--rose-bg);border-color:var(--rose)}
 .nt.muted{color:var(--muted);background:var(--muted-bg);border-color:var(--muted)}
 .nt.deep{color:var(--deep);background:var(--deep-bg);border-color:var(--deep)}
 
 .vg{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:.4rem;margin:1.4rem 0 2rem}
 .vi{background:var(--bg-card);border:1px solid var(--brd-l);border-radius:8px;padding:.7rem .92rem;transition:all .2s ease}
-.vi:hover{border-color:var(--brd);box-shadow:0 2px 10px rgba(20,18,20,.04)}
+.vi:hover{border-color:var(--brd);box-shadow:0 2px 10px rgba(18,36,27,.04)}
 .vi .en{font-family:var(--fd);font-size:.92rem;font-weight:500;color:var(--ink);letter-spacing:.005em}
 .vi .pt{font-family:var(--fb);font-size:.73rem;color:var(--ink-m)}
 
@@ -88,23 +96,23 @@ body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.7
 .dlg-ctx{font-family:var(--fb);font-size:.76rem;color:var(--ink-m);font-style:italic;margin-bottom:1.2rem}
 .ln{display:flex;gap:.8rem;margin-bottom:.76rem;align-items:flex-start}
 .av{flex-shrink:0;width:31px;height:31px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fb);font-size:.48rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;margin-top:2px}
-.av.you{background:var(--gold-bg);color:var(--gold-d);border:1.5px solid rgba(176,152,96,.15)}
-.av.them{background:var(--nude-bg);color:var(--nude-d);border:1.5px solid rgba(212,184,168,.18)}
+.av.you{background:var(--gold-bg);color:var(--gold-d);border:1.5px solid rgba(201,179,126,.15)}
+.av.them{background:var(--nude-bg);color:var(--nude-d);border:1.5px solid rgba(169,187,169,.18)}
 .bb{flex:1}.bb .en{font-family:var(--fd);font-size:.98rem;color:var(--ink);line-height:1.48;font-weight:500;letter-spacing:.005em}
 .bb .pt{font-family:var(--fb);font-size:.75rem;color:var(--ink-m);line-height:1.5;margin-top:.05rem}
 
 .bk{border-radius:12px;padding:1.5rem 1.6rem;margin:1.8rem 0;border:1px solid}
 .bk h4{font-family:var(--fb);font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.5rem}
 .bk p{font-size:.9rem;color:var(--ink-s);line-height:1.75}
-.bk.tip{background:linear-gradient(135deg,var(--gold-bg),var(--bg));border-color:rgba(176,152,96,.14)}.bk.tip h4{color:var(--gold-d)}
-.bk.cultural{background:linear-gradient(135deg,var(--nude-bg),var(--bg));border-color:rgba(212,184,168,.15)}.bk.cultural h4{color:var(--nude-d)}
-.bk.alert{background:linear-gradient(135deg,var(--rose-bg),var(--bg));border-color:rgba(196,154,138,.14)}.bk.alert h4{color:#8A5A4A}
-.bk.note{background:linear-gradient(135deg,var(--muted-bg),var(--bg));border-color:rgba(122,114,116,.12)}.bk.note h4{color:var(--muted)}
+.bk.tip{background:linear-gradient(135deg,var(--gold-bg),var(--bg));border-color:rgba(201,179,126,.14)}.bk.tip h4{color:var(--gold-d)}
+.bk.cultural{background:linear-gradient(135deg,var(--nude-bg),var(--bg));border-color:rgba(169,187,169,.15)}.bk.cultural h4{color:var(--nude-d)}
+.bk.alert{background:linear-gradient(135deg,var(--rose-bg),var(--bg));border-color:rgba(184,118,92,.14)}.bk.alert h4{color:#8F5640}
+.bk.note{background:linear-gradient(135deg,var(--muted-bg),var(--bg));border-color:rgba(110,119,111,.12)}.bk.note h4{color:var(--muted)}
 
 .banner{background:linear-gradient(135deg,var(--black-d) 0%,var(--black) 50%,var(--black-d) 100%);padding:2.6rem 2rem;text-align:center;margin-top:3.5rem}
-.banner h3{font-family:var(--fd);font-size:1.6rem;font-weight:400;color:rgba(245,242,240,.7);letter-spacing:.01em;margin-bottom:.3rem}
+.banner h3{font-family:var(--fd);font-size:1.6rem;font-weight:400;color:rgba(244,243,238,.7);letter-spacing:.01em;margin-bottom:.3rem}
 .banner h3 em{font-style:italic;color:var(--gold-l)}
-.banner p{font-family:var(--fb);font-size:.8rem;color:rgba(245,242,240,.25);max-width:440px;margin:0 auto;line-height:1.55}
+.banner p{font-family:var(--fb);font-size:.8rem;color:rgba(244,243,238,.25);max-width:440px;margin:0 auto;line-height:1.55}
 
 .sep{display:flex;align-items:center;justify-content:center;gap:1rem;padding:2.8rem 0 0}
 .sep::before,.sep::after{content:'';flex:1;max-width:100px;height:1px;background:var(--brd)}
@@ -115,7 +123,17 @@ body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.7
 
 @media(max-width:768px){.main{padding:0 1.2rem 4rem}.dlg{padding:1.3rem}.sc{padding-top:3.5rem}.vg{grid-template-columns:1fr}.nav-ul a{padding:.78rem .68rem;font-size:.56rem}}
 .fi{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}.fi.v{opacity:1;transform:translateY(0)}
+
+/* ═══ STANDARD FOOTER — identical on every Viaje Bem module ═══ */
+footer.footer{text-align:center;padding:3.5rem 2rem;border-top:1px solid #ECEEF4;margin-top:3rem;line-height:1.75}
+footer.footer .footer-b{font-family:'Bodoni Moda',Georgia,serif;font-size:1.25rem;font-weight:400;color:#141B2D;margin-bottom:.35rem}
+footer.footer .footer-t{font-family:'Nunito Sans',sans-serif;font-size:.76rem;color:#7A8299;line-height:1.75}
+footer.footer .sig{display:flex;flex-direction:column;align-items:center;gap:1.1rem;margin-top:2.2rem;padding-top:2rem;border-top:1px solid #ECEEF4}
+footer.footer .sig-n{font-family:'Bodoni Moda',Georgia,serif;font-size:1.05rem;font-weight:400;color:#141B2D}
+footer.footer .sig-r{font-family:'Nunito Sans',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#C9A84C;margin-top:.15rem}
 </style>
+</head>
+<body>
 <section class="hero">
   <div class="hero-c">
     <div class="hero-badge">English for Travelers — Módulo Completo</div>
@@ -142,81 +160,12 @@ body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.7
   <li><a href="#s14">Problemas</a></li>
   <li><a href="#s15">Gorjetas</a></li>
 </ul></div></nav>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p><main class="main"><p></p>
-<!-- ███ 1 ███ -->
+<main class="main"><!-- ███ 1 ███ -->
 <section class="sc" id="s1">
   <div class="sc-tag"><span class="n">1</span> Types of Dining</div>
   <h2>Tipos de Restaurante e Estabelecimento</h2>
   <p class="sc-sub">Cada lugar tem seu código, seu vocabulário e suas expectativas.</p>
-  <p class="sc-intro">No exterior, a experiência gastronômica varia enormemente dependendo do tipo de estabelecimento. Saber a diferença entre um bistro e um brasserie, ou entre um diner e um pub, muda completamente como você se comporta, o que espera e como fala.</p>
+  <p class="sc-intro">No exterior, a experiência gastronômica varia enormemente dependendo do tipo de estabelecimento. Saber a diferença entre um bistro e uma brasserie, ou entre um diner e um pub, muda completamente como você se comporta, o que espera e como fala.</p>
   <div class="vg">
     <div class="vi"><div class="en">fine dining</div><div class="pt">alta gastronomia (reserva obrigatória, dress code)</div></div>
     <div class="vi"><div class="en">casual dining</div><div class="pt">restaurante casual (sem reserva, ambiente relaxado)</div></div>
@@ -249,7 +198,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.7
     <div class="cd"><div class="en">"Do you have any availability this Saturday evening?"</div><div class="pt">Vocês têm disponibilidade neste sábado à noite?</div></div>
     <div class="cd"><div class="en">"Could we get a table by the window / on the terrace / in a quiet area?"</div><div class="pt">Poderíamos ter uma mesa perto da janela / no terraço / em uma área tranquila?</div></div>
     <div class="cd"><div class="en">"It's a special occasion — our anniversary. Is there anything you can arrange?"</div><div class="pt">É uma ocasião especial — nosso aniversário. Tem algo que vocês possam preparar?</div></div>
-    <div class="cd"><div class="en">"One of our guests has a severe nut allergy. Can the kitchen accommodate that?"</div><div class="pt">Um dos nossos convidados tem alergia grave a nozes. A cozinha pode acomodar isso?</div></div>
+    <div class="cd"><div class="en">"One of our guests has a severe nut allergy. Can the kitchen accommodate that?"</div><div class="pt">Um dos nossos convidados tem alergia grave a castanhas. A cozinha pode acomodar isso?</div></div>
     <div class="cd"><div class="en">"I need to cancel / change my reservation. It was under the name Silva for Friday."</div><div class="pt">Preciso cancelar / alterar minha reserva. Estava no nome Silva para sexta-feira.</div></div>
   </div>
   <div class="bk tip">
@@ -360,19 +309,19 @@ body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.7
   <p class="sc-sub">Comunicar isso com clareza pode literalmente salvar sua vida.</p>
   <div class="gr"><div class="gr-t">Comunicando alergias</div>
     <div class="cd"><div class="en">"I have a severe allergy to peanuts / shellfish / gluten / dairy."</div><div class="pt">Tenho alergia grave a amendoim / frutos do mar / glúten / laticínios.</div></div>
-    <div class="cd"><div class="en">"Does this dish contain any nuts / eggs / soy?"</div><div class="pt">Esse prato contém nozes / ovos / soja?</div></div>
+    <div class="cd"><div class="en">"Does this dish contain any nuts / eggs / soy?"</div><div class="pt">Esse prato contém castanhas / ovos / soja?</div></div>
     <div class="cd"><div class="en">"Can the kitchen prepare this without [ingredient]?"</div><div class="pt">A cozinha pode preparar isso sem [ingrediente]?</div></div>
     <div class="cd"><div class="en">"This is a medical allergy, not a preference. It's very serious."</div><div class="pt">É uma alergia médica, não uma preferência. É muito sério.</div></div>
   </div>
   <div class="gr"><div class="gr-t">Dietas e preferências</div>
     <div class="cd"><div class="en">"I'm vegetarian / vegan / pescatarian."</div><div class="pt">Sou vegetariano(a) / vegano(a) / pescetariano(a) (come peixe mas não carne).</div></div>
-    <div class="cd"><div class="en">"Do you have any gluten-free / dairy-free / sugar-free options?"</div><div class="pt">Vocês têm opções sem glúten / sem lactose / sem açúcar?</div></div>
+    <div class="cd"><div class="en">"Do you have any gluten-free / dairy-free / sugar-free options?"</div><div class="pt">Vocês têm opções sem glúten / sem laticínios / sem açúcar?</div></div>
     <div class="cd"><div class="en">"Is this dish suitable for someone who doesn't eat pork?"</div><div class="pt">Esse prato é adequado para quem não come carne de porco?</div></div>
     <div class="cd"><div class="en">"Do you have a separate menu for allergies?"</div><div class="pt">Vocês têm um cardápio separado para alergias?</div></div>
   </div>
   <div class="vg">
     <div class="vi"><div class="en">peanuts / tree nuts</div><div class="pt">amendoim / castanhas</div></div>
-    <div class="vi"><div class="en">shellfish / seafood</div><div class="pt">crustáceos / frutos do mar</div></div>
+    <div class="vi"><div class="en">shellfish / seafood</div><div class="pt">crustáceos e moluscos / frutos do mar</div></div>
     <div class="vi"><div class="en">gluten / wheat</div><div class="pt">glúten / trigo</div></div>
     <div class="vi"><div class="en">dairy / lactose</div><div class="pt">laticínios / lactose</div></div>
     <div class="vi"><div class="en">eggs / soy</div><div class="pt">ovos / soja</div></div>
@@ -434,7 +383,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.7
   <p class="sc-sub">Starbucks, cafés independentes e padarias artesanais — o vocabulário do dia a dia.</p>
   <div class="gr"><div class="gr-t">Pedindo café</div>
     <div class="cd"><div class="en">"Can I get a large latte with oat milk?"</div><div class="pt">Posso pedir um latte grande com leite de aveia?</div></div>
-    <div class="cd"><div class="en">"A flat white, please. For here." / "An iced americano. To go."</div><div class="pt">Um flat white, por favor. Para tomar aqui. / Um americano gelado. Para viagem.</div><div class="nt gold"><strong>"For here"</strong> = para consumir no local. <strong>"To go"</strong> (EUA) ou <strong>"Takeaway"</strong> (UK) = para viagem. Sempre vão perguntar.</div></div>
+    <div class="cd"><div class="en">"A flat white, please. For here." / "An iced americano. To go."</div><div class="pt">Um flat white, por favor. Para tomar aqui. / Um americano gelado. Para viagem.</div><div class="nt gold"><strong>"For here"</strong> = para consumir no local. <strong>"To go"</strong> = para viagem. Sempre vão perguntar.</div></div>
     <div class="cd"><div class="en">"What's the difference between your medium and large?"</div><div class="pt">Qual é a diferença entre o médio e o grande de vocês?</div></div>
     <div class="cd"><div class="en">"Can I have an extra shot of espresso?"</div><div class="pt">Posso adicionar uma dose extra de espresso?</div></div>
     <div class="cd"><div class="en">"Do you have any sugar-free syrups?"</div><div class="pt">Vocês têm xaropes sem açúcar?</div></div>
@@ -507,12 +456,12 @@ body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.7
 <p>As últimas seções cobrem como pedir a conta, dividir, resolver problemas e dar gorjeta.</p></div></div>
 <!-- ███ 13 ███ -->
 <section class="sc" id="s13">
-  <div class="sc-tag"><span class="n">13</span> The Bill</div>
+  <div class="sc-tag"><span class="n">13</span> The Check</div>
   <h2>Pedindo e Entendendo a Conta</h2>
   <p class="sc-sub">Check, bill, tab — e como dividir sem constrangimento.</p>
   <div class="gr"><div class="gr-t">Pedindo a conta</div>
-    <div class="cd"><div class="en">"Could we get the check, please?"</div><div class="pt">Podemos pedir a conta, por favor?</div><div class="nt gold"><strong>"Check"</strong> (EUA) ou <strong>"bill"</strong> (UK/Europa) = conta. Nos EUA, use "check". No Reino Unido, use "bill".</div></div>
-    <div class="cd"><div class="en">"We're ready for the bill whenever you get a chance."</div><div class="pt">Estamos prontos para a conta quando puder.</div></div>
+    <div class="cd"><div class="en">"Could we get the check, please?"</div><div class="pt">Podemos pedir a conta, por favor?</div><div class="nt gold"><strong>"Check"</strong> = conta. Nos EUA, use "check".</div></div>
+    <div class="cd"><div class="en">"We're ready for the check whenever you get a chance."</div><div class="pt">Estamos prontos para a conta quando puder.</div></div>
   </div>
   <div class="gr"><div class="gr-t">Dividindo a conta</div>
     <div class="cd"><div class="en">"Could we split the check?" / "Separate checks, please."</div><div class="pt">Podemos dividir a conta? / Contas separadas, por favor.</div></div>
@@ -538,7 +487,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.7
   <div class="gr"><div class="gr-t">Pedido errado ou incompleto</div>
     <div class="cd"><div class="en">"Excuse me, this isn't what I ordered. I asked for the salmon, not the chicken."</div><div class="pt">Com licença, não foi isso que pedi. Pedi o salmão, não o frango.</div></div>
     <div class="cd"><div class="en">"I'm still waiting for my appetizer. We ordered it 20 minutes ago."</div><div class="pt">Ainda estou esperando minha entrada. Pedimos há 20 minutos.</div></div>
-    <div class="cd"><div class="en">"I asked for my steak medium-rare, but this is well-done. Could you send it back?"</div><div class="pt">Pedi meu bife mal-passado, mas está bem-passado. Poderia devolver?</div></div>
+    <div class="cd"><div class="en">"I asked for my steak medium-rare, but this is well-done. Could you take it back to the kitchen?"</div><div class="pt">Pedi meu bife mal-passado puxando para o ponto, mas está bem-passado. Poderia levar de volta para a cozinha?</div></div>
     <div class="cd"><div class="en">"I specifically said no onions. There are onions in this."</div><div class="pt">Eu disse especificamente sem cebola. Tem cebola nisso.</div></div>
   </div>
   <div class="gr"><div class="gr-t">Qualidade e higiene</div>
@@ -548,7 +497,7 @@ body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.7
     <div class="cd"><div class="en">"This glass / plate isn't clean. Could I get a new one?"</div><div class="pt">Esse copo / prato não está limpo. Poderia trazer outro?</div></div>
   </div>
   <div class="gr"><div class="gr-t">Problemas com a conta</div>
-    <div class="cd"><div class="en">"I think there's a mistake on the bill. We didn't order this item."</div><div class="pt">Acho que tem um erro na conta. Não pedimos esse item.</div></div>
+    <div class="cd"><div class="en">"I think there's a mistake on the check. We didn't order this item."</div><div class="pt">Acho que tem um erro na conta. Não pedimos esse item.</div></div>
     <div class="cd"><div class="en">"We were charged for three drinks but we only had two."</div><div class="pt">Fomos cobrados por três bebidas, mas só tomamos duas.</div></div>
     <div class="cd"><div class="en">"Is the service charge / gratuity already included?"</div><div class="pt">A taxa de serviço / gorjeta já está inclusa?</div></div>
   </div>
@@ -587,142 +536,11 @@ body{font-family:var(--fb);background:var(--bg);color:var(--ink);line-height:1.7
 <footer class="footer">
   <div class="footer-b">Dining & Drinks — English for Travelers</div>
   <p class="footer-t">Conteúdo exclusivo para fins educacionais.<br>Desenvolvido com excelência para alunos que buscam comunicação internacional de alto nível.</p>
+  <div class="sig">
+    <div><div class="sig-n">Thaiana Faria</div><div class="sig-r">Especialista em Inglês Médico e Comunicação Científica · MD Talk</div></div>
+    <div><div class="sig-n">Thiago Faria</div><div class="sig-r">Produção de Conteúdo Técnico · The Engine Lab</div></div>
+  </div>
 </footer>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p></main>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
+</main>
+</body>
+</html>
